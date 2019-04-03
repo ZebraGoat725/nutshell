@@ -1,4 +1,6 @@
-sessionStorage.setItem("username", 2)
-let data = sessionStorage.getItem("username")
+import HTMLFactory from "./HTMLFactory";
+import loginForm from "./loginScripts/loginForm"
 
-console.log(data)
+let container = document.querySelector("#users-section")
+
+container.appendChild(loginForm.createLoginForm())
