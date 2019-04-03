@@ -8,7 +8,7 @@ const createNewUserObj = (userName, userEmail) => {
         userName: userName,
         userEmail: userEmail
     }
-};
+}
 
 const loginHandler = {
     // Function to handle user clicking login button. Function clears page and loads dashboard
@@ -34,9 +34,11 @@ const loginHandler = {
     },
     // Submit function creates an object with the user input and posts the new object into the database.
     submit() {
-        const newNameInput = document.querySelector("#registerName - input");
-        const newEmailInput = document.querySelector("#registerEmail - input");
+        const section = document.querySelector("#login-section");
+        const newNameInput = document.querySelector("#registerName-input").value;
+        const newEmailInput = document.querySelector("#registerEmail-input").value;
         API.postCreateUser(createNewUserObj(newNameInput, newEmailInput));
+        HTMLFactory.clearContainer(section);
     }
 };
 

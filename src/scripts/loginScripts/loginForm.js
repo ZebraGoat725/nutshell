@@ -40,7 +40,7 @@ const loginForm = {
 
         loginButton.addEventListener("click", loginHandler.login)
 
-        registerButton.addEventListener("click", loginHandler.register);
+        registerButton.addEventListener("click", loginHandler.register)
 
         //append elements
         loginDiv.appendChild(userNameLabel)
