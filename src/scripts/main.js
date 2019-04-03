@@ -1,7 +1,8 @@
 import HTMLFactory from "./HTMLFactory";
 import registerForm from "./loginScripts/registerForm";
 import loginHandler from "./loginScripts/loginHandler"
+import loginForm from "./loginScripts/loginForm"
 
-console.log(HTMLFactory.createElementWithText("h1", "test", "test"));
-loginHandler.register()
+const container = document.querySelector("#login-section")
 
+container.appendChild(loginForm.createLoginForm())
