@@ -22,9 +22,9 @@ const loginHandler = {
                 }
             })
         });
+        let userID = sessionStorage.getItem("userID");
         const section = document.querySelector("#login-section");
         HTMLFactory.clearContainer(section);
-
     },
     // Function to handle user clicking register button. Function clears page, calls registerForm and appends to registerSection and then appends to body
     register() {
