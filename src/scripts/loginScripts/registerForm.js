@@ -1,5 +1,7 @@
 import HTMLFactory from "./../HTMLFactory";
 
+//The buildRegisterForm function creates a document fragment that contains the HTML buildup for the registration form. The structure is div > h1 > form > div > label > input > /div > /form > /div
+
 const registerForm = {
     buildRegisterForm: () => {
         const registerFormFrag = document.createDocumentFragment();
