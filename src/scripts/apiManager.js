@@ -4,12 +4,22 @@
 const url = "http://localhost:8088";
 
 const API = {
-    getUser: () => { // this will get all the users not sure if this will get used
+    getUsers: () => { // this will get all the users not sure if this will get used
         return fetch(`${url}/users`)
         .then(r => r.json())
     },
-    getFriend: () => {
-        return fetch (`${url}/`)
+    getUser: (id) => { // this will get all the users not sure if this will get used
+        return fetch(`${url}/users/${id}`)
+        .then(r => r.json())
+    },
+    postCreateUser: (userObj) => {
+        return fetch(`${url}/users`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(userObj)
+        })
     }
 }
 
