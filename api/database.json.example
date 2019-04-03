@@ -1,7 +1,8 @@
 {
   "users": [],
   "messages": [],
-  "news": [],
+  "articles": [],
   "friends": [],
-  "tasks": []
+  "tasks": [],
+  "events": []
 }
