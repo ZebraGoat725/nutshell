@@ -30,9 +30,9 @@ const loginHandler = {
    },
    // Submit function creates an object with the user input and posts the new object into the database.
    submit() {
-    const newNameInput = document.querySelector("#registerName-input");
-    const newEmailInput = document.querySelector("#registerEmail-input");
-    API.postCreateUser(createNewUserObj(newNameInput.textContent, newEmailInput.textContent));
+    let newNameInput = document.querySelector("#registerName-input");
+    let newEmailInput = document.querySelector("#registerEmail-input");
+    API.postCreateUser(createNewUserObj(newNameInput.value, newEmailInput.value));
    }
 };
 

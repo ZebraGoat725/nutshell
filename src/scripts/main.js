@@ -1,6 +1,8 @@
 import HTMLFactory from "./HTMLFactory";
+import registerForm from "./loginScripts/registerForm";
+import loginHandler from "./loginScripts/loginHandler"
 import loginForm from "./loginScripts/loginForm"
 
-let container = document.querySelector("#users-section")
+const container = document.querySelector("#login-section")
 
 container.appendChild(loginForm.createLoginForm())
