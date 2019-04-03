@@ -7,22 +7,22 @@
     },
     {
         "id": 2,
-        "name": "BillyM",
+        "userName": "BillyM",
         "email": "billy@gmail.com"
     },
     {
         "id": 3,
-        "name": "JamekaE",
+        "userName": "JamekaE",
         "email": "jameka@gmail.com"
     },
     {
         "id": 4,
-        "name": "AlexT",
+        "userName": "AlexT",
         "email": "alex@gmail.com"
     },
     {
         "id": 5,
-        "name": "ChrisM",
+        "userName": "ChrisM",
         "email": "chris@gmail.com"
     }
     ],
