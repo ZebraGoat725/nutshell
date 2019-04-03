@@ -13,14 +13,14 @@ const API = {
         return fetch(`${url}/users/${id}`)
         .then(r => r.json())
     },
-    postCreateUser: (userObj) => {
+    postCreateUser: (newUserObj) => {
         return fetch(`${url}/users`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify(userObj)
-        })
+            body: JSON.stringify(newUserObj)
+        }).then(r => r.json())
     }
 }
 
