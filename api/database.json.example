@@ -98,28 +98,28 @@
     "friends": [
         {
             "id": 1,
-            "userId": 2,
-            "otherFriendId": 1
+            "currentUserId": 2,
+            "userId": 1
         },
         {
             "id": 2,
-            "userId": 1,
-            "otherFriendId": 3
+            "currentUserId": 1,
+            "userId": 3
         },
         {
             "id": 3,
-            "userId": 5,
-            "otherFriendId": 4
+            "currentUserId": 5,
+            "userId": 4
         },
         {
             "id": 4,
-            "userId": 3,
-            "otherFriendId": 5
+            "currentUserId": 3,
+            "userId": 5
         },
         {
             "id": 5,
-            "userId": 4,
-            "otherFriendId": 2
+            "currentUserId": 4,
+            "userId": 2
         }
     ],
     "tasks": [
