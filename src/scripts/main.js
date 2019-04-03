@@ -1,3 +1,6 @@
 import HTMLFactory from "./HTMLFactory";
+import loginForm from "./loginScripts/loginForm"
 
-console.log(HTMLFactory.createElementWithText("h1", "test", "test"));
+let container = document.querySelector("#users-section")
+
+container.appendChild(loginForm.createLoginForm())
