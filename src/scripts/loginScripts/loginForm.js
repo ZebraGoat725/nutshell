@@ -38,9 +38,7 @@ const loginForm = {
 
         registerButton.type = "button"
 
-        loginButton.addEventListener("click", () => {
-            console.log("click")
-        })
+        loginButton.addEventListener("click", loginHandler.login)
 
         registerButton.addEventListener("click", loginHandler.register)
 
