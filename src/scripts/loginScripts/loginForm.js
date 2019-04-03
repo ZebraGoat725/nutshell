@@ -1,4 +1,5 @@
 import HTMLFactory from "../HTMLFactory"
+import loginHandler from "./loginHandler"
 
 const loginForm = {
     createLoginForm() {
@@ -41,9 +42,7 @@ const loginForm = {
             console.log("click")
         })
 
-        registerButton.addEventListener("click", () => {
-            console.log("click")
-        })
+        registerButton.addEventListener("click", loginHandler.register)
 
         //append elements
         loginDiv.appendChild(userNameLabel)
