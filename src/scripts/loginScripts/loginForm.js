@@ -38,7 +38,20 @@ const loginForm = {
         registerButton.type = "button"
 
         loginButton.addEventListener("click", () => {
-            console.log("click")
+            let userNameValue = document.querySelector("#userNameInput").value.toLowerCase()
+            let emailValue = document.querySelector("#emailInput").value.toLowerCase()
+
+            fetch("http://localhost:8088/users")
+                .then(response => response.json())
+                .then(user => {
+                    user.forEach(entry => {
+                        if (userNameValue === entry.userName.toLowerCase() && emailValue === entry.email.toLowerCase()){
+                            sessionStorage.setItem("string", entry.id)
+                            let data = sessionStorage.getItem(entry.userName)
+                            // console.log(data)
+                        }
+                    })
+                })
         })
 
         registerButton.addEventListener("click", () => {
@@ -64,6 +77,8 @@ const loginForm = {
     }
 }
 
+// let data = sessionStorage.getItem("JonS")
+// console.log(data)
 
 export default loginForm
 /* <div>
