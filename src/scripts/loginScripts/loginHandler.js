@@ -1,6 +1,7 @@
 import HTMLFactory from "./../HTMLFactory"
 import registerForm from "./registerForm"
 import API from "./../apiManager.js"
+import chatSection from "./../chatScripts/chatForm";
 
 //createNewUserObj is meant to be a factory function that is used by the post new user method.
 const createNewUserObj = (userName, userEmail) => {
@@ -21,10 +22,20 @@ const loginHandler = {
                     sessionStorage.setItem("userID", user.id)
                 }
             })
-        });
+        })
+        .then(() =>{
+            const section = document.querySelector("#login-section");
+            HTMLFactory.clearContainer(section);
+            const chatContainer = document.querySelector("#messages-section");
+            let chat = chatSection.mainChatBlock();
+            // console.log(chat)
+            console.log(chatSection.buildChatBootStrapContainer())
+            // chatContainer.appendChild(chatSection.mainChatBlock())
+        })
         let userID = sessionStorage.getItem("userID");
-        const section = document.querySelector("#login-section");
-        HTMLFactory.clearContainer(section);
+        // HTMLFactory.clearContainer(section);
+
+
     },
     // Function to handle user clicking register button. Function clears page, calls registerForm and appends to registerSection and then appends to body
     register() {

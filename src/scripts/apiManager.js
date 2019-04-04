@@ -1,5 +1,5 @@
 // this is the object for the api fetch calls.
-
+import chatRoom from "./../scripts/chatScripts/chatForm"
 
 //the main url
 const url = "http://localhost:8088";
@@ -21,6 +21,10 @@ const API = {
             },
             body: JSON.stringify(newUserObj)
         }).then(r => r.json())
+    },
+    getMessages: () => {
+        return fetch(`${url}/messages?_expand=user`)
+        .then(r => r.json())
     }
 }
 
