@@ -24,6 +24,15 @@ const API = {
     },
     getEvents: (userId) => {
         return fetch(`${url}/events?userId=${userId}`).then(response => response.json());
+    },
+    postEvent: (eventObj) => {
+        return fetch(`${url}/events`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(eventObj)
+        }).then(response => response.json());
     }
 }
 

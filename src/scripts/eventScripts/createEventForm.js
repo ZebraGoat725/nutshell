@@ -1,7 +1,12 @@
 import HTMLFactory from "../HTMLFactory";
+import API from "../apiManager";
+import eventHTML from "./eventHTML"
+import handlersForEvents from "./handlersForEvents";
 
 const createEventForm = {
     eventFormBuilder: () => {
+        let userID = sessionStorage.getItem("userID");
+        const eventSection = document.querySelector("#events-section");
         const newEventCard = HTMLFactory.createElementWithText("div", undefined, "createEvent-card");
         const newEventHeader = newEventCard.appendChild(HTMLFactory.createElementWithText("h3", "Enter New Event Information", "createEvent-header"));
         const newEventForm = newEventCard.appendChild(HTMLFactory.createElementWithText("form", undefined, "createEvent-form"));
@@ -17,8 +22,13 @@ const createEventForm = {
         const newEventButtons = newEventForm.appendChild(HTMLFactory.createElementWithText("div", undefined, "createEvent-buttonGroup"))
         const submitEventButton = newEventButtons.appendChild(HTMLFactory.createElementWithText("button", "Submit", "createEvent-submitButton"));
         submitEventButton.type ="button";
+        submitEventButton.addEventListener("click", handlersForEvents.submitNewEventHandler);
         const cancelEventButton = newEventButtons.appendChild(HTMLFactory.createElementWithText("button", "Cancel", "createEvent-cancelButton"));
         cancelEventButton.type = "button";
+        cancelEventButton.addEventListener("click", function(){
+            HTMLFactory.clearContainer(eventSection);
+            API.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
+        })
 
         return newEventCard;
     }

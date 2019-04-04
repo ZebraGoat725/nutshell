@@ -16,6 +16,7 @@ const eventHTML = {
         const eventLocation = cardBody.appendChild(HTMLFactory.createElementWithText("p", eventObj.eventLocation, `eventCard-location--${eventObj.id}`));
         const eventButtonGroup = cardBody.appendChild(HTMLFactory.createElementWithText("div", undefined, `eventCard-buttonGroup--${eventObj.id}`));
         const eventEditButton = eventButtonGroup.appendChild(HTMLFactory.createElementWithText("button", "Edit Event", `eventCard-editButton--${eventObj.id}`));
+        eventEditButton.addEventListener("click", handlersForEvents.editEventHandler);
         const eventDeleteButton = eventButtonGroup.appendChild(HTMLFactory.createElementWithText("button", "Delete Event", `eventCard-deleteButton--${eventObj.id}`))
     },
     listEventsToDom: (eventsArray) => {
