@@ -1,6 +1,7 @@
 import HTMLFactory from "./../HTMLFactory"
 import registerForm from "./registerForm"
 import API from "./../apiManager.js"
+import appendFriendsSection from "./../friendScripts/appendFriendsSection"
 
 //createNewUserObj is meant to be a factory function that is used by the post new user method.
 const createNewUserObj = (userName, userEmail) => {
@@ -21,10 +22,15 @@ const loginHandler = {
                     sessionStorage.setItem("userID", user.id)
                 }
             })
-        });
-        let userID = sessionStorage.getItem("userID");
-        const section = document.querySelector("#login-section");
-        HTMLFactory.clearContainer(section);
+        }).then(() => {
+            let userID = sessionStorage.getItem("userID");
+            const section = document.querySelector("#login-section");
+            HTMLFactory.clearContainer(section)
+        }).then(() => {
+            appendFriendsSection.appendSection();
+        })
+
+
     },
     // Function to handle user clicking register button. Function clears page, calls registerForm and appends to registerSection and then appends to body
     register() {
