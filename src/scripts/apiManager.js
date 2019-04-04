@@ -21,6 +21,9 @@ const API = {
             },
             body: JSON.stringify(newUserObj)
         }).then(r => r.json())
+    },
+    getEvents: (userId) => {
+        return fetch(`${url}/events?userId=${userId}`).then(response => response.json());
     }
 }
 

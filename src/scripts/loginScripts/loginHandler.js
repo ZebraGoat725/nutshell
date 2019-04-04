@@ -1,6 +1,7 @@
 import HTMLFactory from "./../HTMLFactory"
 import registerForm from "./registerForm"
 import API from "./../apiManager.js"
+import eventHTML from "../eventScripts/eventHTML"
 
 //createNewUserObj is meant to be a factory function that is used by the post new user method.
 const createNewUserObj = (userName, userEmail) => {
@@ -21,10 +22,15 @@ const loginHandler = {
                     sessionStorage.setItem("userID", user.id)
                 }
             })
-        });
-        let userID = sessionStorage.getItem("userID");
+        }).then(() => {
+            let userID = sessionStorage.getItem("userID");
         const section = document.querySelector("#login-section");
         HTMLFactory.clearContainer(section);
+        API.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
+        });
+        
+
+        
     },
     // Function to handle user clicking register button. Function clears page, calls registerForm and appends to registerSection and then appends to body
     register() {
