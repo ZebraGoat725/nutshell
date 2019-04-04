@@ -25,8 +25,19 @@ const API = {
     getTask (userId) {
         return fetch (`${url}/tasks?userId=${userId}`)
         .then(r => r.json())
+    },
+    postTask (object) {
+        return fetch (`${url}/tasks`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(object)
+        }).then(r => r.json())
     }
 }
+
+
 
 export default API;
 // http://localhost:8088/tasks?userId=1

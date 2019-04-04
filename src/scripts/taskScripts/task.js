@@ -5,6 +5,9 @@ import htmlFactory from "../HTMLFactory"
 //createElementWithText
 //clearContainer
 
+import taskHandler from "./taskHandler"
+//handleNewTask
+
 let data = sessionStorage.getItem("userID")
 // console.log(data)
 
@@ -18,16 +21,24 @@ export default {
 
         let taskList = htmlFactory.createElementWithText("ul")
 
-        let loopDiv = htmlFactory.createElementWithText("div")
+        let loopDiv = htmlFactory.createElementWithText("div","", "loopDiv")
+
+        let buttonDiv = htmlFactory.createElementWithText("div", "", "buttonDiv")
+
+        let newTaskButton = htmlFactory.createElementWithText("button", "New Task")
+
+        let refreshButton = htmlFactory.createElementWithText("button", "Refresh")
 
         apiManager.getTask(data)
             .then(task => {
                 task.forEach(entry => {
+                    if (entry.isComplete === false){
                     let taskListItem = htmlFactory.createElementWithText("li", entry.taskName)
-                    let checkBox = htmlFactory.createElementWithText("input")
                     let dateSpan = htmlFactory.createElementWithText("span", entry.targetDate)
                     let checkBoxSpan = htmlFactory.createElementWithText("span", "Done")
+                    let checkBox = htmlFactory.createElementWithText("input", "", `checkBox--${entry.id}`)
                     checkBox.type = "checkbox"
+                    checkBox.value = entry.isComplete
 
                     let hr = htmlFactory.createElementWithText("hr")
                     
@@ -41,12 +52,25 @@ export default {
                         console.log("work")
                     })
                     
+                }
                 })
             })
         loopDiv.appendChild(taskList)
         mainDiv.appendChild(taskHeader)
         mainDiv.appendChild(loopDiv)
+        buttonDiv.appendChild(refreshButton)
+        buttonDiv.appendChild(newTaskButton)
+        loopDiv.appendChild(buttonDiv)
         taskFragment.appendChild(mainDiv)
+
+        newTaskButton.addEventListener("click", () => {
+            taskHandler.handleNewTask()
+        })
+
+        refreshButton.addEventListener("click", () => {
+            console.log("refresh works")
+        })
+
         return taskFragment
 
     }
