@@ -35,6 +35,8 @@ const buildChatMessage = {
         return elm;
     },
     mainChatTextForm: function() {
+        // this component will build the CURRENT user's actual message
+        // it later will have the save button
         const chatForm = buildChatMessage.buildChatElements("div", undefined, "user-message", undefined);
         const chatInput = buildChatMessage.buildChatElements("input", undefined, undefined, undefined);
         chatInput.type = "text";
@@ -47,9 +49,11 @@ const buildChatMessage = {
 
         return chatForm;
     },
-    buildChatBootStrapContainer: function(mainChatBlock) {
-        // this component will create the main bootstrap structure and also append the mainChatBlock and the mainChatTextForm
-        console.log(mainChatBlock)
+    buildChatBootStrapContainer: function() {
+        // this component will create the main bootstrap structure and also append the mainChatBlock
+        // that will contain the all the user messages and the mainChatTextForm that will allow the user to enter
+        // there new message
+        // console.log(mainChatBlock)
         const chatBootDomFragment = document.createDocumentFragment();
         const cardCenter = buildChatMessage.buildChatElements("div","card text-center");
         const cardHeader = buildChatMessage.buildChatElements("div", "card-header",undefined, "Chat Room");
@@ -58,31 +62,12 @@ const buildChatMessage = {
 
         chatBootDomFragment.appendChild(cardCenter);
         chatBootDomFragment.appendChild(cardHeader);
-        cardBlock.appendChild(mainChatBlock); //may need parenthesis
+        // cardBlock.appendChild(); //may need parenthesis
         chatBootDomFragment.appendChild(cardBlock);
         cardFooter.appendChild(buildChatMessage.mainChatTextForm()); // may need parenthesis
         chatBootDomFragment.appendChild(cardFooter);
 
         return chatBootDomFragment;
-    },
-    mainChatBlock: function(){
-        // this will populate the messages
-        return api.getMessages()
-        .then(messagesArray => { // this call will retrieve all the messages w/ the friends' id
-            console.log(messagesArray); // this is a tester
-            let chat = document.createElement("div");
-            messagesArray.forEach(msgObj => {
-                 // I want to go throught the array of objs and parse the info
-                const chatBlock = buildChatMessage.buildChatElements("div", undefined, `msg-block--${msgObj.id}`, undefined);
-                const message = buildChatMessage.buildChatElements("p", "card-text",`msg-number--${msgObj.id}`, `${msgObj.message}`);
-                const user = buildChatMessage.buildChatElements("span" ,undefined, `user-msgId--${msgObj.id}`,`${msgObj.userName}`)
-                chatBlock.appendChild(message);
-                chatBlock.appendChild(user);
-                chat.appendChild(chatBlock);
-                console.log(chat)
-                buildChatMessage.buildChatBootStrapContainer(chat);
-            })
-        })
     }
 }
 export default buildChatMessage;

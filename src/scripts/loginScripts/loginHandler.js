@@ -27,15 +27,14 @@ const loginHandler = {
             const section = document.querySelector("#login-section");
             HTMLFactory.clearContainer(section);
             const chatContainer = document.querySelector("#messages-section");
-            let chat = chatSection.mainChatBlock();
+            // let chat = chatSection.mainChatBlock();
             // console.log(chat)
+            // console.log(chatSection.mainChatBlock())
             console.log(chatSection.buildChatBootStrapContainer())
-            // chatContainer.appendChild(chatSection.mainChatBlock())
+            chatContainer.appendChild(chatSection.buildChatBootStrapContainer())
         })
         let userID = sessionStorage.getItem("userID");
         // HTMLFactory.clearContainer(section);
-
-
     },
     // Function to handle user clicking register button. Function clears page, calls registerForm and appends to registerSection and then appends to body
     register() {
