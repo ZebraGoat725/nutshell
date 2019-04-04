@@ -21,7 +21,12 @@ const API = {
             },
             body: JSON.stringify(newUserObj)
         }).then(r => r.json())
+    },
+    getTask (userId) {
+        return fetch (`${url}/tasks?userId=${userId}`)
+        .then(r => r.json())
     }
 }
 
 export default API;
+// http://localhost:8088/tasks?userId=1
