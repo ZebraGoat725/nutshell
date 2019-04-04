@@ -47,7 +47,11 @@ const API = {
         return fetch(`${url}/events/${eventID}`, {
             method: "DELETE"
         }).then(response => response.json());
+    },
+    getFriendEvents: (userID) => {
+        return fetch(`${url}/friends?currentUserId=${userID}&_expand=user`).then(response => response.json()).then(response => response.map(response => response.user.id)).then(response => API.getEvents(response));
     }
 }
 
 export default API;
+

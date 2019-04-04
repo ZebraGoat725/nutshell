@@ -12,3 +12,6 @@ container.appendChild(loginForm.createLoginForm())
 // const eventContainer = document.querySelector("#events-section");
 // let userID = sessionStorage.getItem("userID");
 // API.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
+
+let userID = sessionStorage.getItem("userID");
+console.log(API.getFriendEvents(userID));

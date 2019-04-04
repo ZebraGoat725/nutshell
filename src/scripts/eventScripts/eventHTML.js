@@ -3,6 +3,7 @@ import handlersForEvents from "./handlersForEvents"
 import editEventForm from "./editEventForm"
 
 const eventHTML = {
+    // buildEventCard builds the outer structure of the card.
     buildEventCard: () => {
         const eventCard = HTMLFactory.createElementWithText("div", undefined, "eventCard-card");
         eventCard.classList.add("card");
@@ -11,6 +12,7 @@ const eventHTML = {
 
         return eventCard;
     },
+    // htmlforEachEvent takes the event object and creates the html structure for it
     HTMLforEachEvent: (eventObj) => {
         const eventSection = document.querySelector("#events-section");
         const eventCard = document.querySelector("#eventCard-card");
@@ -43,6 +45,7 @@ const eventHTML = {
         eventDeleteButton.classList.add("btn-danger");
         eventDeleteButton.addEventListener("click", handlersForEvents.deleteEvent);
     },
+    // listEventsToDom takes the array of events and calls the htmlForEachEvent function for each event, and appends each one to the DOM.
     listEventsToDom: (eventsArray) => {
         const eventSection = document.querySelector("#events-section");
         eventSection.appendChild(eventHTML.buildEventCard());

@@ -28,9 +28,6 @@ const loginHandler = {
         HTMLFactory.clearContainer(section);
         API.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
         });
-        
-
-        
     },
     // Function to handle user clicking register button. Function clears page, calls registerForm and appends to registerSection and then appends to body
     register() {
