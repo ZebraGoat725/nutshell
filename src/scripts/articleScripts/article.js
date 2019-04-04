@@ -9,7 +9,9 @@ import loginHandler from "../loginScripts/loginHandler"
 const articleSection = {
     buildArticleWithObj: () => {
         let fragment = document.createDocumentFragment()
-        API.getArticles().then(parsedArray => {
+        let activeUser = sessionStorage.getItem("userID")
+        console.log(activeUser)
+        API.getArticles(activeUser).then(parsedArray => {
             console.log(parsedArray)
             parsedArray.forEach(obj => {
                 const objectTitle = HTMLFactory.createElementWithText("p", `${obj.title}`, "objectTitle")
@@ -20,26 +22,24 @@ const articleSection = {
                 fragment.appendChild(objectUrl)
                 //  buildArticle(fragment)
             });
+        }).then(e => {
+            let articleDom = document.getElementById("articleBody")
+        articleDom.appendChild(fragment)
         })
-        return fragment;
     },
-    buildArticle: function() {
+    _buildArticle: function () {
         // creating html
         const articleFragment = document.createDocumentFragment();
-        const articleCard =  HTMLFactory.createElementWithText("div", undefined, "articleCard");
+        const articleCard = HTMLFactory.createElementWithText("div", undefined, "articleCard");
         const articleTitle = HTMLFactory.createElementWithText("h1", "Articles", "articleTitle");
         const articleBody = HTMLFactory.createElementWithText("div", undefined, "articleBody");
-        const frag = this.buildArticleWithObj()
-        console.log(frag)
-        articleBody.appendChild(frag)
-
         const createArticleButton = HTMLFactory.createElementWithText("button", "Create New Article", "newArticle");
         const articleTitleLabel = HTMLFactory.createElementWithText("label", "Title: ", "articleTitleInput");
-        const articleTitleInput = HTMLFactory.createElementWithText("input", undefined, "articleTitleInput")
-        const articleSynopsisLabel =  HTMLFactory.createElementWithText("label", "Synopsis: ", "articleSynopsisLabel");
+        const articleTitleInput = HTMLFactory.createElementWithText("input", undefined, "articleTitleInput");
+        const articleSynopsisLabel = HTMLFactory.createElementWithText("label", "Synopsis: ", "articleSynopsisLabel");
         const articleSynopsisInput = HTMLFactory.createElementWithText("input", undefined, "articleSynopsisInput");
         const articleUrlLabel = HTMLFactory.createElementWithText("label", "URL: ", "articleUrlLabel");
-        const articleUrlInput = HTMLFactory.createElementWithText("input", undefined, "articleUrlInput")
+        const articleUrlInput = HTMLFactory.createElementWithText("input", undefined, "articleUrlInput");
         // appending to article fragment
         articleFragment.appendChild(articleCard);
         articleFragment.appendChild(articleTitle);
@@ -50,9 +50,14 @@ const articleSection = {
         articleFragment.appendChild(articleSynopsisLabel);
         articleFragment.appendChild(articleSynopsisInput);
         articleFragment.appendChild(articleUrlLabel);
-        articleFragment.appendChild(articleUrlInput)
-
-        return articleFragment
+        articleFragment.appendChild(articleUrlInput);
+        return articleFragment;
+    },
+    get buildArticle() {
+        return this._buildArticle;
+    },
+    set buildArticle(value) {
+        this._buildArticle = value;
     },
     createNewArticle: (articleNewsTitle, articleSynopsis, articleUrl) => {
         return {
