@@ -1,5 +1,6 @@
 // This component will essentially build the chat form fields
 import api from "./../apiManager"
+import msgs from "./appendChat"
 
 
 
@@ -40,7 +41,7 @@ const buildChatMessage = {
         const chatForm = buildChatMessage.buildChatElements("div", undefined, "user-message", undefined);
         const chatInput = buildChatMessage.buildChatElements("input", undefined, undefined, undefined);
         chatInput.type = "text";
-        chatInput.cols = 50;
+        chatInput.cols = 100;
         chatInput.placeholder = "Enter your message";
 
         const chatSendButton = buildChatMessage.buildChatElements("button", "btn btn-primary", "chat--send", "Send");
@@ -49,11 +50,10 @@ const buildChatMessage = {
 
         return chatForm;
     },
-    buildChatBootStrapContainer: function() {
+    buildChatBootStrapContainer: function(chat) {
         // this component will create the main bootstrap structure and also append the mainChatBlock
         // that will contain the all the user messages and the mainChatTextForm that will allow the user to enter
         // there new message
-        // console.log(mainChatBlock)
         const chatBootDomFragment = document.createDocumentFragment();
         const cardCenter = buildChatMessage.buildChatElements("div","card text-center");
         const cardHeader = buildChatMessage.buildChatElements("div", "card-header",undefined, "Chat Room");
@@ -62,12 +62,14 @@ const buildChatMessage = {
 
         chatBootDomFragment.appendChild(cardCenter);
         chatBootDomFragment.appendChild(cardHeader);
-        // cardBlock.appendChild(); //may need parenthesis
+        cardBlock.appendChild(chat); //may need parenthesis
         chatBootDomFragment.appendChild(cardBlock);
         cardFooter.appendChild(buildChatMessage.mainChatTextForm()); // may need parenthesis
         chatBootDomFragment.appendChild(cardFooter);
 
-        return chatBootDomFragment;
+        // return chatBootDomFragment;
+        const chatContainer = document.querySelector("#messages-section");
+        chatContainer.appendChild(chatBootDomFragment)
     }
 }
 export default buildChatMessage;
