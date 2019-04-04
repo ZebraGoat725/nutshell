@@ -3,6 +3,8 @@ import eventHTML from "./eventHTML"
 import API from "../apiManager"
 import handlersForEvents from "./handlersForEvents";
 
+
+// The editEventFormBuilder is meant to carry out the production of the edit form that appears when the edit event button is clicked. This has name, date, location, and id passed in as arguments in order to populate the edit form with the event information. The id is passed in to carry over to the submitEditEvent function, which needs a specific ID in order to select the right item in the database.
 const editEventForm = {
     editEventFormBuilder: (name, date, location, id) => {
         let userID = sessionStorage.getItem("userID");

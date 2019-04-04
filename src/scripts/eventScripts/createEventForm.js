@@ -3,6 +3,9 @@ import API from "../apiManager";
 import eventHTML from "./eventHTML"
 import handlersForEvents from "./handlersForEvents";
 
+// The createEventForm is meant to create the form that the user will need to create a new event.
+
+
 const createEventForm = {
     eventFormBuilder: () => {
         let userID = sessionStorage.getItem("userID");
