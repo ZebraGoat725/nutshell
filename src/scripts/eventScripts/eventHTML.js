@@ -1,4 +1,5 @@
 import HTMLFactory from "../HTMLFactory"
+import handlersForEvents from "./handlersForEvents"
 
 const eventHTML = {
     buildEventCard: () => {
@@ -26,7 +27,7 @@ const eventHTML = {
         const eventCard = document.querySelector("#eventCard-card");
         const cardFooter = eventCard.appendChild(HTMLFactory.createElementWithText("div", undefined, "eventCard-footer"));
         const newEventButton = cardFooter.appendChild(HTMLFactory.createElementWithText("button", "Create New Event", "eventCard-createButton"));
-
+        newEventButton.addEventListener("click", handlersForEvents.createNewEventHandler);
         return eventCard;
     }
 }
