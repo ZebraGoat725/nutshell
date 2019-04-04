@@ -1,204 +1,215 @@
 {
-    "users": [
-    {
-        "id": 1,
-        "userName": "JonS",
-        "email": "jon@gmail.com"
+  "users": [{
+      "id": 1,
+      "userName": "JonS",
+      "email": "jon@gmail.com",
+      "image": "images/tiger.png"
     },
     {
-        "id": 2,
-        "userName": "BillyM",
-        "email": "billy@gmail.com"
+      "id": 2,
+      "userName": "BillyM",
+      "email": "billy@gmail.com",
+      "image": "images/elephant.png"
     },
     {
-        "id": 3,
-        "userName": "JamekaE",
-        "email": "jameka@gmail.com"
+      "id": 3,
+      "userName": "JamekaE",
+      "email": "jameka@gmail.com",
+      "image": "images/giraffe.jpg"
     },
     {
-        "id": 4,
-        "userName": "AlexT",
-        "email": "alex@gmail.com"
+      "id": 4,
+      "userName": "AlexT",
+      "email": "alex@gmail.com",
+      "image": "images/ostrich.png"
     },
     {
-        "id": 5,
-        "userName": "ChrisM",
-        "email": "chris@gmail.com"
+      "id": 5,
+      "userName": "ChrisM",
+      "email": "chris@gmail.com",
+      "image": "images/ocelot.jpg"
     }
-    ],
-    "messages": [
-        {
-            "id": 1,
-            "message": "Hi",
-            "userId": 2
-        },
-        {
-            "id": 2,
-            "message": "Hello",
-            "userId": 1
-        },
-        {
-            "id": 3,
-            "message": "Whats up",
-            "userId": 4
-        },
-        {
-            "id": 4,
-            "message": "Good Morning",
-            "userId": 5
-        },
-        {
-            "id": 5,
-            "message": "Bye",
-            "userId": 3
-        }
-    ],
-    "articles": [
-        {
-            "id": 1,
-            "userId": 2,
-            "url": "https://www.wkrn.com/news/removal-of-cherry-trees-begins-in-downtown-nashville/1897109191",
-            "title": "Removal of Cherry trees",
-            "synopsis": "The NFL demands to have cherry trees taken down",
-            "timeStamp": ""
-        },
-        {
-            "id": 2,
-            "userId": 3,
-            "url": "https://www.foxnews.com/sports/tom-brady-announces-hes-retiring-but-theres-a-catch",
-            "title": "Tom Brady Annouces Retirment",
-            "synopsis": "Tom First Tweet jokes about retirement",
-            "timeStamp": ""
-        },
-        {
-            "id": 3,
-            "userId": 1,
-            "url": "https://www.wkrn.com/news/crime-tracker/police-looking-for-man-who-fled-after-bank-teller-refused-robbery-demand-note/1896332038",
-            "title": "Police looking for man who fled after bank teller refused robbery demand note",
-            "synopsis": "Demanded robbery by Note",
-            "timeStamp": ""
-        },
-        {
-            "id": 4,
-            "userId": 5,
-            "url": "https://www.fool.com/investing/2019/04/03/why-amd-stock-is-soaring-today.aspx",
-            "title": "AMD stocks Soaring",
-            "synopsis": "AMD stocks soaring due to positive news",
-            "timeStamp": ""
-        },
-        {
-            "id": 5,
-            "userId": 4,
-            "url": "https://www.theverge.com/2019/4/1/18291091/tesla-epa-fine-hazardous-waste-fremont-factory",
-            "title": "Tesla penalized for violating hazardous waste law at California factory",
-            "synopsis": "Tesla allowed waste to sit on site",
-            "timeStamp": ""
-        }
-    ],
-    "friends": [
-        {
-            "id": 1,
-            "currentUserId": 2,
-            "userId": 1
-        },
-        {
-            "id": 2,
-            "currentUserId": 1,
-            "userId": 3
-        },
-        {
-            "id": 3,
-            "currentUserId": 5,
-            "userId": 4
-        },
-        {
-            "id": 4,
-            "currentUserId": 3,
-            "userId": 5
-        },
-        {
-            "id": 5,
-            "currentUserId": 4,
-            "userId": 2
-        }
-    ],
-    "tasks": [
-        {
-            "id": 1,
-            "userId": 2,
-            "taskName": "Take out trash",
-            "targetDate": "4/5/2019",
-            "isComplete": false
-        },
-        {
-            "id": 2,
-            "userId": 1,
-            "taskName": "mow the lawn",
-            "targetDate": "4/1/2019",
-            "isComplete": false
-        },
-        {
-            "id": 3,
-            "userId": 3,
-            "taskName": "trim hedges",
-            "targetDate": "4/1/2019",
-            "isComplete": false
-        },
-        {
-            "id": 4,
-            "userId": 5,
-            "taskName": "clean the kitchen",
-            "targetDate": "4/3/2019",
-            "isComplete": false
-        },
-        {
-            "id": 5,
-            "userId": 4,
-            "taskName": "file taxes",
-            "targetDate": "4/15/2019",
-            "isComplete": false
-        }
-    ],
-    "events": [
-        {
-            "id": 1,
-            "userId": 2,
-            "eventName": "NFL draft",
-            "url": "www.nfl.com",
-            "eventDate": "4/27/2019",
-            "eventLocation": "Nashville,TN"
-        },
-        {
-            "id": 2,
-            "userId": 2,
-            "eventName": "Demo Day",
-            "url": "www.nss.com",
-            "eventDate": "3/22/2019",
-            "eventLocation": "500 Interstate Blvd S"
-        },
-        {
-            "id": 3,
-            "userId": 2,
-            "eventName": "Monster Jam",
-            "url": "www.monsterjam.com",
-            "eventDate": "4/6/2019",
-            "eventLocation": "Knoxville,TN"
-        },
-        {
-            "id": 4,
-            "userId": 2,
-            "eventName": "Jimmy Buffet concert",
-            "url": "https://www.bridgestonearena.com/events/detail/jimmy-buffett-the-coral-reefer-band",
-            "eventDate": "4/27/2019",
-            "eventLocation": "Bridgestone arena Nashville,TN"
-        },
-        {
-            "id": 5,
-            "userId": 2,
-            "eventName": "Hozier concert",
-            "url": "www.getrich.com",
-            "eventDate": "3/21/2019",
-            "eventLocation": " The Ryman Nashvile,TN"
-        }
-    ]
+  ],
+  "messages": [{
+      "id": 1,
+      "message": "Hi",
+      "userId": 2
+    },
+    {
+      "id": 2,
+      "message": "Hello",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "message": "Whats up",
+      "userId": 4
+    },
+    {
+      "id": 4,
+      "message": "Good Morning",
+      "userId": 5
+    },
+    {
+      "id": 5,
+      "message": "Bye",
+      "userId": 3
+    }
+  ],
+  "articles": [{
+      "id": 1,
+      "userId": 2,
+      "url": "https://www.wkrn.com/news/removal-of-cherry-trees-begins-in-downtown-nashville/1897109191",
+      "title": "Removal of Cherry trees",
+      "synopsis": "The NFL demands to have cherry trees taken down",
+      "timeStamp": ""
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "url": "https://www.foxnews.com/sports/tom-brady-announces-hes-retiring-but-theres-a-catch",
+      "title": "Tom Brady Annouces Retirment",
+      "synopsis": "Tom First Tweet jokes about retirement",
+      "timeStamp": ""
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "url": "https://www.wkrn.com/news/crime-tracker/police-looking-for-man-who-fled-after-bank-teller-refused-robbery-demand-note/1896332038",
+      "title": "Police looking for man who fled after bank teller refused robbery demand note",
+      "synopsis": "Demanded robbery by Note",
+      "timeStamp": ""
+    },
+    {
+      "id": 4,
+      "userId": 5,
+      "url": "https://www.fool.com/investing/2019/04/03/why-amd-stock-is-soaring-today.aspx",
+      "title": "AMD stocks Soaring",
+      "synopsis": "AMD stocks soaring due to positive news",
+      "timeStamp": ""
+    },
+    {
+      "id": 5,
+      "userId": 4,
+      "url": "https://www.theverge.com/2019/4/1/18291091/tesla-epa-fine-hazardous-waste-fremont-factory",
+      "title": "Tesla penalized for violating hazardous waste law at California factory",
+      "synopsis": "Tesla allowed waste to sit on site",
+      "timeStamp": ""
+    }
+  ],
+  "friends": [{
+      "id": 1,
+      "currentUserId": 2,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "currentUserId": 1,
+      "userId": 3
+    },
+    {
+      "id": 3,
+      "currentUserId": 5,
+      "userId": 4
+    },
+    {
+      "id": 4,
+      "currentUserId": 3,
+      "userId": 5
+    },
+    {
+      "id": 5,
+      "currentUserId": 4,
+      "userId": 2
+    },{
+      "id": 6,
+      "currentUserId": 2,
+      "userId": 3
+    },{
+      "id": 7,
+      "currentUserId": 2,
+      "userId": 4
+    },{
+      "id": 8,
+      "currentUserId": 2,
+      "userId": 5
+    }
+  ],
+  "tasks": [{
+      "id": 1,
+      "userId": 2,
+      "taskName": "Take out trash",
+      "targetDate": "4/5/2019",
+      "isComplete": false
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "taskName": "mow the lawn",
+      "targetDate": "4/1/2019",
+      "isComplete": false
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "taskName": "trim hedges",
+      "targetDate": "4/1/2019",
+      "isComplete": false
+    },
+    {
+      "id": 4,
+      "userId": 5,
+      "taskName": "clean the kitchen",
+      "targetDate": "4/3/2019",
+      "isComplete": false
+    },
+    {
+      "id": 5,
+      "userId": 4,
+      "taskName": "file taxes",
+      "targetDate": "4/15/2019",
+      "isComplete": false
+    }
+  ],
+  "events": [{
+      "id": 1,
+      "userId": 2,
+      "eventName": "NFL draft",
+      "url": "www.nfl.com",
+      "eventDate": "4/27/2019",
+      "eventLocation": "Nashville,TN"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "eventName": "Demo Day",
+      "url": "www.nss.com",
+      "eventDate": "3/22/2019",
+      "eventLocation": "500 Interstate Blvd S"
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "eventName": "Monster Jam",
+      "url": "www.monsterjam.com",
+      "eventDate": "4/6/2019",
+      "eventLocation": "Knoxville,TN"
+    },
+    {
+      "id": 4,
+      "userId": 2,
+      "eventName": "Jimmy Buffet concert",
+      "url": "https://www.bridgestonearena.com/events/detail/jimmy-buffett-the-coral-reefer-band",
+      "eventDate": "4/27/2019",
+      "eventLocation": "Bridgestone arena Nashville,TN"
+    },
+    {
+      "id": 5,
+      "userId": 2,
+      "eventName": "Hozier concert",
+      "url": "www.getrich.com",
+      "eventDate": "3/21/2019",
+      "eventLocation": " The Ryman Nashvile,TN"
+    }
+  ]
 }
