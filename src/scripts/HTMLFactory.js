@@ -14,7 +14,6 @@ const HTMLFactory = {
     clearContainer(elementToClear) {
         while (elementToClear.firstChild) {
             elementToClear.removeChild(elementToClear.firstChild);
-            return elementToClear;
         }
     }
 };

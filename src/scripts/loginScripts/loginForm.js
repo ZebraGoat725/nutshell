@@ -1,4 +1,5 @@
 import HTMLFactory from "../HTMLFactory"
+import loginHandler from "./loginHandler"
 
 const loginForm = {
     createLoginForm() {
@@ -37,26 +38,9 @@ const loginForm = {
 
         registerButton.type = "button"
 
-        loginButton.addEventListener("click", () => {
-            let userNameValue = document.querySelector("#userNameInput").value.toLowerCase()
-            let emailValue = document.querySelector("#emailInput").value.toLowerCase()
+        loginButton.addEventListener("click", loginHandler.login)
 
-            fetch("http://localhost:8088/users")
-                .then(response => response.json())
-                .then(user => {
-                    user.forEach(entry => {
-                        if (userNameValue === entry.userName.toLowerCase() && emailValue === entry.email.toLowerCase()){
-                            sessionStorage.setItem("string", entry.id)
-                            let data = sessionStorage.getItem(entry.userName)
-                            // console.log(data)
-                        }
-                    })
-                })
-        })
-
-        registerButton.addEventListener("click", () => {
-            console.log("click")
-        })
+        registerButton.addEventListener("click", loginHandler.register)
 
         //append elements
         loginDiv.appendChild(userNameLabel)

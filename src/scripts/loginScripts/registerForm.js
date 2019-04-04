@@ -1,4 +1,6 @@
 import HTMLFactory from "./../HTMLFactory";
+import API from "../apiManager";
+import loginHandler from "./loginHandler"
 
 //The buildRegisterForm function creates a document fragment that contains the HTML buildup for the registration form. The structure is div > h1 > form > div > label > input > /div > /form > /div
 
@@ -15,6 +17,8 @@ const registerForm = {
         const registerEmailLabel = registerEmailDiv.appendChild(HTMLFactory.createElementWithText("label", "Enter your Email: "));
         const registerEmailInput = registerEmailDiv.appendChild(HTMLFactory.createElementWithText("input", undefined, "registerEmail-input"));
         const registerButton = registerForm.appendChild(HTMLFactory.createElementWithText("button", "Submit", "register-button"));
+        registerButton.setAttribute("type", "button");
+        registerButton.addEventListener("click", loginHandler.submit)
         registerFormFrag.appendChild(registerCard);
 
         return registerFormFrag;
