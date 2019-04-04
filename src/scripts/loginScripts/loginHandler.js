@@ -27,6 +27,7 @@ const loginHandler = {
             const section = document.querySelector("#login-section");
             HTMLFactory.clearContainer(section)
         }).then(() => {
+            // Calling function to build friend section of DOM
             friendEventHandler.handleAppendFriend()
         })
 

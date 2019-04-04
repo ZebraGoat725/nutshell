@@ -4,6 +4,7 @@ import API from "./../apiManager"
 const friendsContainer = document.querySelector("#friends-section");
 
 const appendFriendsSection = {
+    // Function to get all user and friend information and then append that to the DOM
     appendSection() {
         let userID = sessionStorage.getItem("userID");
         return API.getResource("users", userID).then(user => {

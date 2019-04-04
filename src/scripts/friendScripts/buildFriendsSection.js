@@ -2,6 +2,7 @@ import HTMLFactory from "./../HTMLFactory"
 import friendEventHandler from "./friendEventHandler"
 
 const buildFriendsSection = {
+    // Function to create div container for user information
     createTopDiv(userName, userEmail, userImage) {
         const divSideBar = HTMLFactory.createElementWithText("div");
         divSideBar.classList = "sidenav";
@@ -15,6 +16,7 @@ const buildFriendsSection = {
         divSideBar.appendChild(HTMLFactory.createElementWithText("hr"));
         return divSideBar;
     },
+    // Function to create individual div containers for each friend
     createFriendDiv(friendName, friendEmail, friendImage, friendId) {
         const friendDiv = HTMLFactory.createElementWithText("div");
         let userPic = HTMLFactory.createElementWithText("IMG");
