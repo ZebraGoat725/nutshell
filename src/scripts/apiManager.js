@@ -33,6 +33,20 @@ const API = {
             },
             body: JSON.stringify(eventObj)
         }).then(response => response.json());
+    },
+    putEvent: (id, eventObj) => {
+        return fetch(`${url}/events/${id}`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(eventObj)
+        }).then(response => response.json());
+    },
+    deleteEvent: (eventID) => {
+        return fetch(`${url}/events/${eventID}`, {
+            method: "DELETE"
+        }).then(response => response.json());
     }
 }
 

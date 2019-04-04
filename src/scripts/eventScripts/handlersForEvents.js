@@ -35,6 +35,18 @@ const handlersForEvents = {
             HTMLFactory.clearContainer(eventSection);
             API.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
         })
+    },
+    submitEditEvent: (id) => {
+        const editName = document.querySelector("#editEvent-nameInput");
+        const editDate = document.querySelector("#editEvent-dateInput");
+        const editLocation = document.querySelector("#editEvent-locationInput");
+        let userID = sessionStorage.getItem("userID");
+        API.putEvent(id, eventObjectBuilder(Number(userID), editName.value, editDate.value, editLocation.value)).then(() => HTMLFactory.clearContainer(eventSection)).then(() => API.getEvents(userID)).then(response => eventHTML.listEventsToDom(response));
+    },
+    deleteEvent: () => {
+        let eventID = event.target.id.split("--")[1];
+        let userID = sessionStorage.getItem("userID");
+        API.deleteEvent(eventID).then(() => HTMLFactory.clearContainer(eventSection)).then(() => API.getEvents(userID)).then(response => eventHTML.listEventsToDom(response));
     }
 }
 
