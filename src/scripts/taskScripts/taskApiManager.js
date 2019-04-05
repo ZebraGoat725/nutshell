@@ -17,5 +17,14 @@ export default {
     getOneTask (id) {
         return fetch (`${url}/tasks/${id}`)
         .then(r => r.json())
+    },
+    putTask (id, object) {
+        return fetch (`${url}/tasks/${id}`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(object)
+        }).then(r => r.json())
     }
 }

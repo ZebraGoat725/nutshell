@@ -51,12 +51,12 @@ export default {
 
         taskApiManager.getOneTask(divId[1])
             .then(response => {
-                let editInput = htmlFactory.createElementWithText("input")
+                let editInput = htmlFactory.createElementWithText("input", "", `editInput--${response.id}`)
                 editInput.size = "45"
                 editInput.value = response.taskName
                 divContainer.appendChild(editInput)
 
-                let dateInput = htmlFactory.createElementWithText("input")
+                let dateInput = htmlFactory.createElementWithText("input", "", `dateInput--${response.id}`)
                 dateInput.size = "45"
                 dateInput.value = response.targetDate
                 divContainer.appendChild(dateInput)
@@ -81,7 +81,24 @@ export default {
     },
     //function runs when you hit enter to save you edit changes, then repost all the tasks to the dom
     handleSaveEdit() {
-        console.log("god")
+        let divContainer = event.target.parentNode
+        let divId = divContainer.id.split("--")
+        let editInputValue = document.querySelector(`#editInput--${divId[1]}`).value
+        let dateInputValue = document.querySelector(`#dateInput--${divId[1]}`).value
+
+        let editObject = {
+            userId: data,
+            taskName: editInputValue,
+            targetDate: dateInputValue,
+            isComplete: false
+        }
+
+        taskApiManager.putTask(divId[1], editObject)
+            .then(r => {
+                let container = document.querySelector("#tasks-section")
+                htmlFactory.clearContainer(container)
+                container.appendChild(task.createTask())
+            })
     }
 }
 
