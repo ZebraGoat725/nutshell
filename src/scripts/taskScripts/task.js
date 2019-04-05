@@ -19,8 +19,8 @@ export default {
 
         let taskHeader = htmlFactory.createElementWithText("h1", "Your Tasks")
 
-        let taskList = htmlFactory.createElementWithText("ul")
-
+        let taskList = htmlFactory.createElementWithText("ul","", "taskList")
+//////////
         let loopDiv = htmlFactory.createElementWithText("div","", "loopDiv")
 
         let buttonDiv = htmlFactory.createElementWithText("div", "", "buttonDiv")
@@ -33,8 +33,9 @@ export default {
             .then(task => {
                 task.forEach(entry => {
                     if (entry.isComplete === false){
-                    let taskListItem = htmlFactory.createElementWithText("li", entry.taskName)
-                    let dateSpan = htmlFactory.createElementWithText("span", entry.targetDate)
+                    let innerDiv = htmlFactory.createElementWithText("div", "", `innerDiv--${entry.id}`)
+                    let taskListItem = htmlFactory.createElementWithText("li", `${entry.taskName}---- Target Date: ${entry.targetDate}`)
+                    // let dateSpan = htmlFactory.createElementWithText("span", entry.targetDate)
                     let checkBoxSpan = htmlFactory.createElementWithText("span", "Done")
                     let checkBox = htmlFactory.createElementWithText("input", "", `checkBox--${entry.id}`)
                     checkBox.type = "checkbox"
@@ -42,15 +43,20 @@ export default {
 
                     let hr = htmlFactory.createElementWithText("hr")
                     
-                    taskList.appendChild(taskListItem)
-                    taskList.appendChild(dateSpan)
-                    taskList.appendChild(checkBoxSpan)
-                    taskList.appendChild(checkBox)
-                    taskList.appendChild(hr)
+                    innerDiv.appendChild(taskListItem)
+                    // innerDiv.appendChild(dateSpan)
+                    innerDiv.appendChild(checkBoxSpan)
+                    innerDiv.appendChild(checkBox)
+                    innerDiv.appendChild(hr)
+                    taskList.appendChild(innerDiv)
 
                     taskListItem.addEventListener("click", () => {
-                        console.log("work")
+                        taskHandler.handleEditTask(event)
                     })
+
+                    // dateSpan.addEventListener("click", () => {
+                    //     taskHandler.handleEditTask(event)
+                    // })
                     
                 }
                 })
