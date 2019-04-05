@@ -7,16 +7,19 @@ import buildChat from "./chatForm"
 const messenger = {
     buildMainMsg: messagesArray => {
     // this will populate the messages
+        let chat = document.createDocumentFragment();
         messagesArray.forEach(msgObj => {
+            console.log(msgObj)
             // I want to go throught the array of objs and parse the info
             const chatBlock = buildChat.buildChatElements("div", undefined, `msg-block--${msgObj.id}`, undefined);
             const message = buildChat.buildChatElements("p", "card-text",`msg-number--${msgObj.id}`, `${msgObj.message}`);
-            const user = buildChat.buildChatElements("span" ,undefined, `user-msgId--${msgObj.id}`,`${msgObj.userName}`)
+            const user = buildChat.buildChatElements("span" ,undefined, `user-msgId--${msgObj.id}`,`${msgObj.user.userName}`)
             chatBlock.appendChild(message);
             chatBlock.appendChild(user);
-            
-            buildChat.buildChatBootStrapContainer(chatBlock);
+            chat.appendChild(chatBlock);
+            // buildChat.buildChatBootStrapContainer(chatBlock);
         })
+        buildChat.buildChatBootStrapContainer(chat);
     }
 }
 

@@ -53,8 +53,8 @@ const buildChatMessage = {
     },
     buildChatBootStrapContainer: function(chat) {
         // this component will create the main bootstrap structure which has a parameter being passed into it
-        // this parameter is from the appendChat.js that parses the fetch call 
-        // 
+        // this parameter is from the appendChat.js that parses the fetch call
+        console.log(chat)
         const chatBootDomFragment = document.createDocumentFragment();
         const cardCenter = buildChatMessage.buildChatElements("div","card text-center");
         const cardHeader = buildChatMessage.buildChatElements("div", "card-header",undefined, "Chat Room");
