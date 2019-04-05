@@ -1,6 +1,6 @@
 import HTMLFactory from "../HTMLFactory";
 import eventHTML from "./eventHTML"
-import API from "../apiManager"
+import eventsData from "./eventsDataManager"
 import handlersForEvents from "./handlersForEvents";
 
 
@@ -49,7 +49,7 @@ const editEventForm = {
         cancelEditButton.classList.add("btn-sm");
         cancelEditButton.addEventListener("click", function(){
             HTMLFactory.clearContainer(eventSection);
-            API.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
+            eventsData.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
         })
         return editEventCard;
     }

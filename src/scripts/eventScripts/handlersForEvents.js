@@ -1,7 +1,7 @@
 import HTMLFactory from "../HTMLFactory";
 import createEventForm from "./createEventForm";
 import editEventForm from "./editEventForm";
-import API from "../apiManager";
+import eventsData from "./eventsDataManager";
 import eventHTML from "./eventHTML";
 
 // Target the container for the events
@@ -38,9 +38,9 @@ const handlersForEvents = {
         const eventNameInput = document.querySelector("#createEvent-nameInput");
         const eventDateInput = document.querySelector("#createEvent-dateInput");
         const eventLocationInput = document.querySelector("#createEvent-locationInput");
-        API.postEvent(eventObjectBuilder(Number(userID), eventNameInput.value, eventDateInput.value, eventLocationInput.value)).then(() => {
+        eventsData.postEvent(eventObjectBuilder(Number(userID), eventNameInput.value, eventDateInput.value, eventLocationInput.value)).then(() => {
             HTMLFactory.clearContainer(eventSection);
-            API.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
+            eventsData.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
         })
     },
     // The submitEditEvent is meant to carry out the functionality of submitting the edited event to the database. It will collect the user input and build an event object with these values. Then it will PUT the object / replacing the correct object in the database.
@@ -49,13 +49,13 @@ const handlersForEvents = {
         const editDate = document.querySelector("#editEvent-dateInput");
         const editLocation = document.querySelector("#editEvent-locationInput");
         let userID = sessionStorage.getItem("userID");
-        API.putEvent(id, eventObjectBuilder(Number(userID), editName.value, editDate.value, editLocation.value)).then(() => HTMLFactory.clearContainer(eventSection)).then(() => API.getEvents(userID)).then(response => eventHTML.listEventsToDom(response));
+        eventsData.putEvent(id, eventObjectBuilder(Number(userID), editName.value, editDate.value, editLocation.value)).then(() => HTMLFactory.clearContainer(eventSection)).then(() => eventsData.getEvents(userID)).then(response => eventHTML.listEventsToDom(response));
     },
     // The deleteEvent is meant to carry out the functionality of deleting the item targeted from the database, then it will make another fetch call and display the updated list of events to the DOM
     deleteEvent: () => {
         let eventID = event.target.id.split("--")[1];
         let userID = sessionStorage.getItem("userID");
-        API.deleteEvent(eventID).then(() => HTMLFactory.clearContainer(eventSection)).then(() => API.getEvents(userID)).then(response => eventHTML.listEventsToDom(response));
+        eventsData.deleteEvent(eventID).then(() => HTMLFactory.clearContainer(eventSection)).then(() => eventsData.getEvents(userID)).then(response => eventHTML.listEventsToDom(response));
     }
 }
 

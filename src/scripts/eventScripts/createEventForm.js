@@ -1,5 +1,5 @@
 import HTMLFactory from "../HTMLFactory";
-import API from "../apiManager";
+import eventsData from "./eventsDataManager";
 import eventHTML from "./eventHTML"
 import handlersForEvents from "./handlersForEvents";
 
@@ -45,7 +45,7 @@ const createEventForm = {
         cancelEventButton.type = "button";
         cancelEventButton.addEventListener("click", function(){
             HTMLFactory.clearContainer(eventSection);
-            API.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
+            eventsData.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
         })
 
         return newEventCard;

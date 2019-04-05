@@ -3,7 +3,7 @@ import registerForm from "./loginScripts/registerForm";
 import loginHandler from "./loginScripts/loginHandler"
 import loginForm from "./loginScripts/loginForm"
 import eventHTML from "./eventScripts/eventHTML"
-import API from "./apiManager"
+import eventsData from "./eventScripts/eventsDataManager"
 
 const container = document.querySelector("#login-section")
 
@@ -14,4 +14,4 @@ container.appendChild(loginForm.createLoginForm())
 // API.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
 
 let userID = sessionStorage.getItem("userID");
-console.log(API.getFriendEvents(userID));
+console.log(eventsData.getFriendEvents(userID));
