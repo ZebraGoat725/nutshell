@@ -29,6 +29,14 @@ const buildFriendsSection = {
         friendDiv.appendChild(deleteButton);
         friendDiv.appendChild(HTMLFactory.createElementWithText("hr"));
         return friendDiv;
+    },
+    // Function to create div container with input to save new friend
+    createSaveFriendDiv() {
+        const saveFriendDiv = HTMLFactory.createElementWithText("div");
+        let addFriendButton = HTMLFactory.createElementWithText("button", "Add a friend");
+        // addFriendButton.addEventListener("click", )
+        saveFriendDiv.appendChild(addFriendButton);
+        return saveFriendDiv;
     }
 };
 
