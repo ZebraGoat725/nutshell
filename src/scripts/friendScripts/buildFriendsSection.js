@@ -34,7 +34,7 @@ const buildFriendsSection = {
     createSaveFriendDiv() {
         const saveFriendDiv = HTMLFactory.createElementWithText("div");
         let addFriendButton = HTMLFactory.createElementWithText("button", "Add a friend");
-        // addFriendButton.addEventListener("click", )
+        addFriendButton.addEventListener("click", friendEventHandler.addFriend)
         saveFriendDiv.appendChild(addFriendButton);
         return saveFriendDiv;
     }
