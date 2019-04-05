@@ -22,10 +22,6 @@ const API = {
             body: JSON.stringify(newUserObj)
         }).then(r => r.json())
     },
-    getArticles: (userId) => {
-        return fetch(`${url}/articles?userId=${userId}`)
-        .then(r => r.json())
-    }
 }
 
 export default API;

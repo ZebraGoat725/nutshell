@@ -4,6 +4,7 @@ import loginHandler from "./loginScripts/loginHandler"
 import loginForm from "./loginScripts/loginForm"
 import api from "./apiManager"
 import articleSection from "./articleScripts/article"
+import apiCall from "../scripts/articleScripts/articleApi"
 
 const container = document.querySelector("#login-section")
 const articleContainer = document.querySelector("#articles-section")
