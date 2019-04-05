@@ -1,7 +1,7 @@
 // This component will essentially build the chat form fields
 import api from "./../apiManager"
 import msgs from "./appendChat"
-
+import chatHandle from "./handleMessages"
 
 
 /* BOOTSTRAP LOOK
@@ -39,13 +39,14 @@ const buildChatMessage = {
     mainChatTextForm: function() {
         // this component will build the CURRENT user's actual message
         // it later will have the save button
-        const chatForm = buildChatMessage.buildChatElements("div", undefined, "user-message", undefined);
-        const chatInput = buildChatMessage.buildChatElements("input", undefined, undefined, undefined);
+        const chatForm = buildChatMessage.buildChatElements("div", "chat-form", undefined, undefined);
+        const chatInput = buildChatMessage.buildChatElements("input", undefined, "user-message", undefined);
         chatInput.type = "text";
-        chatInput.cols = 100;
+        chatInput.cols = 200;
         chatInput.placeholder = "Enter your message";
 
         const chatSendButton = buildChatMessage.buildChatElements("button", "btn btn-primary", "chat--send", "Send");
+        chatSendButton.addEventListener("click", chatHandle.handlerChatSendButton); // handle the save message
         chatForm.appendChild(chatInput);
         chatForm.appendChild(chatSendButton);
 

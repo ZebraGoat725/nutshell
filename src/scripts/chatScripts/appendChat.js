@@ -3,6 +3,7 @@
 // the information that is passed into the function will be the main message chunk
 // that has all the previous messages
 import buildChat from "./chatForm"
+import chatHandle from "./handleMessages"
 
 const messenger = {
     buildMainMsg: messagesArray => {
@@ -11,11 +12,22 @@ const messenger = {
         messagesArray.forEach(msgObj => {
             console.log(msgObj)
             // I want to go throught the array of objs and parse the info
-            const chatBlock = buildChat.buildChatElements("div", undefined, `msg-block--${msgObj.id}`, undefined);
+            const chatBlock = buildChat.buildChatElements("div", "msg-block", `msg-block--${msgObj.id}`, undefined);
             const message = buildChat.buildChatElements("p", "card-text",`msg-number--${msgObj.id}`, `${msgObj.message}`);
             const user = buildChat.buildChatElements("p" ,undefined, `user-msgId--${msgObj.id}`,`${msgObj.user.userName}`)
+
+            const addFriendButton = buildChat.buildChatElements("button", "btn btn-primary", `add-friend--${msgObj.id}`, "Add Friend");
+            addFriendButton.addEventListener("click", chatHandle.handlerChatAddFriend)
+            
             chatBlock.appendChild(message);
             chatBlock.appendChild(user);
+
+            let userId = Number(sessionStorage.getItem("userID"));
+
+            if(msgObj.user.id !== userId){
+                chatBlock.appendChild(addFriendButton)
+            }
+
             chat.appendChild(chatBlock);
             // buildChat.buildChatBootStrapContainer(chatBlock);
         })

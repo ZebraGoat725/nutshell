@@ -1,0 +1,4 @@
+.msg-block {
+    display: flex;
+    justify-content: space-evenly;
+}

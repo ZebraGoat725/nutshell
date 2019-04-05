@@ -22,17 +22,18 @@ const loginHandler = {
             users.forEach(user => {
                 if (userName === user.userName.toLowerCase() && userEmail === user.email.toLowerCase()) {
                     sessionStorage.setItem("userID", user.id)
+
+                    const section = document.querySelector("#login-section");
+                    HTMLFactory.clearContainer(section);
+                    API.getMessages().then(msgArray => chatMsg.buildMainMsg(msgArray))
                 }
             })
         })
-        .then(() =>{
-            const section = document.querySelector("#login-section");
-            HTMLFactory.clearContainer(section);
-            API.getMessages().then(msgArray => chatMsg.buildMainMsg(msgArray))
-            // console.log(chatSection.buildChatBootStrapContainer())
-            // const chatContainer = document.querySelector("#messages-section");
-            // chatContainer.appendChild(chatSection.buildChatBootStrapContainer())
-        })
+        // .then(() =>{
+        //     // const section = document.querySelector("#login-section");
+        //     // HTMLFactory.clearContainer(section);
+        //     // API.getMessages().then(msgArray => chatMsg.buildMainMsg(msgArray))
+        // })
         let userID = sessionStorage.getItem("userID");
         // HTMLFactory.clearContainer(section);
     },
