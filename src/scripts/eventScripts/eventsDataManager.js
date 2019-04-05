@@ -28,8 +28,15 @@ const eventsData = {
         }).then(response => response.json());
     },
     getFriendEvents: (userID) => {
-        return fetch(`${url}/friends?currentUserId=${userID}&_expand=user`).then(response => response.json()).then(response => response.map(response => response.user.id)).then(response => eventsData.getEvents(response));
+        return fetch(`${url}/friends?currentUserId=${userID}&_expand=user`).then(response => response.json()).then(response => {
+            let newArray = response.map(users => users.user.id);
+            return newArray
+        })
     }
 }
 
 export default eventsData
+
+
+// .then(response => response.forEach(event => {
+//             eventsData.getEvents(event)})response.map(response => response.user.id)).then(response => console.log(response));
