@@ -4,6 +4,8 @@ import API from "./../apiManager.js"
 import chatMsg from "./../chatScripts/appendChat"
 import friendApi from "./../chatScripts/chatApiManager"
 import parseFriends from "./../chatScripts/friends"
+import loadPage from "./loadPage"
+
 
 //createNewUserObj is meant to be a factory function that is used by the post new user method.
 const createNewUserObj = (userName, userEmail) => {
@@ -30,14 +32,16 @@ const loginHandler = {
                     
                 }
             })
+        }).then(() => {
+            // let userID = sessionStorage.getItem("userID");
+            const section = document.querySelector("#login-section");
+            HTMLFactory.clearContainer(section)
+        }).then(() => {
+            // Calling function to build all sections of DOM
+            loadPage.load()
         })
-        // .then(() =>{
-        //     // const section = document.querySelector("#login-section");
-        //     // HTMLFactory.clearContainer(section);
-        //     // API.getMessages().then(msgArray => chatMsg.buildMainMsg(msgArray))
-        // })
-        let userID = sessionStorage.getItem("userID");
-        // HTMLFactory.clearContainer(section);
+
+
     },
     // Function to handle user clicking register button. Function clears page, calls registerForm and appends to registerSection and then appends to body
     register() {
