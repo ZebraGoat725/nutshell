@@ -73,11 +73,6 @@ export default {
                     }
                 })
             })
-
-
-
-
-
     },
     //function runs when you hit enter to save you edit changes, then repost all the tasks to the dom
     handleSaveEdit() {
@@ -99,6 +94,21 @@ export default {
                 htmlFactory.clearContainer(container)
                 container.appendChild(task.createTask())
             })
+    },
+    handleCheckBox() {
+        let divContainer = event.target.parentNode
+        let divId = divContainer.id.split("--")
+        console.log(divId)
+
+        let patchObject = {
+            isComplete: true
+        }
+        taskApiManager.patchTask(divId[1], patchObject)
+        .then(r => {
+            let container = document.querySelector("#tasks-section")
+            htmlFactory.clearContainer(container)
+            container.appendChild(task.createTask())
+        })
     }
 }
 

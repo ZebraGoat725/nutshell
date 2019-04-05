@@ -14,69 +14,71 @@ let data = sessionStorage.getItem("userID")
 
 export default {
     createTask() {
+        //build elements 
         let taskFragment = document.createDocumentFragment()
-
         let mainDiv = htmlFactory.createElementWithText("div")
-
         let taskHeader = htmlFactory.createElementWithText("h1", "Your Tasks")
-
-        let taskList = htmlFactory.createElementWithText("ul","", "taskList")
-//////////
-        let loopDiv = htmlFactory.createElementWithText("div","", "loopDiv")
-
+        let taskList = htmlFactory.createElementWithText("ul", "", "taskList")
+        let loopDiv = htmlFactory.createElementWithText("div", "", "loopDiv")
         let buttonDiv = htmlFactory.createElementWithText("div", "", "buttonDiv")
-
         let newTaskButton = htmlFactory.createElementWithText("button", "New Task")
-
-        let refreshButton = htmlFactory.createElementWithText("button", "Refresh")
+        // let refreshButton = htmlFactory.createElementWithText("button", "Refresh")
 
         taskApiManager.getTask(data)
             .then(task => {
                 task.forEach(entry => {
-                    if (entry.isComplete === false){
-                    let innerDiv = htmlFactory.createElementWithText("div", "", `innerDiv--${entry.id}`)
-                    let taskListItem = htmlFactory.createElementWithText("li", `${entry.taskName}`)
-                    let dateSpan = htmlFactory.createElementWithText("li", entry.targetDate, `taskDate--${entry.id}`)
-                    let checkBoxSpan = htmlFactory.createElementWithText("span", "Done")
-                    let checkBox = htmlFactory.createElementWithText("input", "", `checkBox--${entry.id}`)
-                    checkBox.type = "checkbox"
-                    checkBox.value = entry.isComplete
+                    //build elements and add content inside them from get call. loops depending how many entries json file has
+                    if (entry.isComplete === false) {
+                        let innerDiv = htmlFactory.createElementWithText("div", "", `innerDiv--${entry.id}`)
+                        let taskListItem = htmlFactory.createElementWithText("li", `${entry.taskName}`)
+                        let dateSpan = htmlFactory.createElementWithText("li", entry.targetDate, `taskDate--${entry.id}`)
+                        let checkBoxSpan = htmlFactory.createElementWithText("span", "Done")
+                        let checkBox = htmlFactory.createElementWithText("input", "", `checkBox--${entry.id}`)
+                        checkBox.type = "checkbox"
+                        checkBox.value = entry.isComplete
 
-                    let hr = htmlFactory.createElementWithText("hr")
-                    
-                    innerDiv.appendChild(taskListItem)
-                    innerDiv.appendChild(dateSpan)
-                    innerDiv.appendChild(checkBoxSpan)
-                    innerDiv.appendChild(checkBox)
-                    innerDiv.appendChild(hr)
-                    taskList.appendChild(innerDiv)
 
-                    taskListItem.addEventListener("click", () => {
-                        taskHandler.handleEditTask(event)
-                    })
+                        let hr = htmlFactory.createElementWithText("hr")
 
-                    dateSpan.addEventListener("click", () => {
-                        taskHandler.handleEditTask(event)
-                    })
-                    
-                }
+                        innerDiv.appendChild(taskListItem)
+                        innerDiv.appendChild(dateSpan)
+                        innerDiv.appendChild(checkBoxSpan)
+                        innerDiv.appendChild(checkBox)
+                        innerDiv.appendChild(hr)
+                        taskList.appendChild(innerDiv)
+
+                        //event listeners on task name and task date and checkbox
+                        taskListItem.addEventListener("click", () => {
+                            taskHandler.handleEditTask(event)
+                        })
+
+                        dateSpan.addEventListener("click", () => {
+                            taskHandler.handleEditTask(event)
+                        })
+
+                        checkBox.addEventListener("click", () => {
+                            taskHandler.handleCheckBox()
+                        })
+
+                    }
                 })
             })
         loopDiv.appendChild(taskList)
         mainDiv.appendChild(taskHeader)
         mainDiv.appendChild(loopDiv)
-        buttonDiv.appendChild(refreshButton)
+        // buttonDiv.appendChild(refreshButton)
         buttonDiv.appendChild(newTaskButton)
         loopDiv.appendChild(buttonDiv)
         taskFragment.appendChild(mainDiv)
 
+        //event listener to add a new task
         newTaskButton.addEventListener("click", () => {
             taskHandler.handleNewTask()
         })
 
-        refreshButton.addEventListener("click", () => {
-            console.log("refresh works")
-        })
+        // refreshButton.addEventListener("click", () => {
+        //     console.log("refresh works")
+        // })
 
         return taskFragment
 

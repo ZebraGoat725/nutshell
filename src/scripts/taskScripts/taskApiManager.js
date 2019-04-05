@@ -26,5 +26,14 @@ export default {
             },
             body: JSON.stringify(object)
         }).then(r => r.json())
+    },
+    patchTask (id, object) {
+        return fetch (`${url}/tasks/${id}`, {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(object)
+        }).then(r => r.json())
     }
 }
