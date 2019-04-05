@@ -31,22 +31,6 @@ const API = {
     getResource: (resources, id) => {
         return fetch(`${url}/${resources}/${id}`)
             .then(r => r.json())
-    },
-    // Function to GET and expand all friends user information of current user
-    getFriends: (currentUser) => {
-        return fetch(`${url}/friends?currentUserId=${currentUser}&_expand=user`)
-            .then(r => r.json())
-    },
-    // Function to GET friend connection ID
-    getFriend: (currentUser, friendToDelete) => {
-        return fetch(`${url}/friends?currentUserId=${currentUser}&userId=${friendToDelete}`)
-            .then(r => r.json())
-    },
-    // Function to DELETE friend connection
-    deleteFriend: (friendToDelete) => {
-        return fetch(`${url}/friends/${friendToDelete}`, {
-            method: "DELETE"
-        })
     }
 }
 

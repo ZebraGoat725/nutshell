@@ -1,6 +1,6 @@
 import appendFriendsSection from "./appendFriendsSection"
-import API from "../apiManager";
 import HTMLFactory from "./../HTMLFactory"
+import apiFriends from "./apiManagerFriends"
 
 const friendsContainer = document.querySelector("#friends-section");
 
@@ -12,7 +12,7 @@ const friendEventHandler = {
     // Function to delete friend connection from API and append updated list of friends to DOM
     deleteFriend() {
         let friendID = event.target.id.split("--");
-        return API.deleteFriend(friendID[1])
+        return apiFriends.deleteFriend(friendID[1])
             .then(() => {
                 HTMLFactory.clearContainer(friendsContainer);
             }).then(() => {
