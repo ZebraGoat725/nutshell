@@ -61,13 +61,11 @@ const buildChatMessage = {
         const cardHeader = buildChatMessage.buildChatElements("div", "card-header",undefined, "Chat Room");
         const cardBlock = buildChatMessage.buildChatElements("div", "card-block", undefined, undefined);
         const cardFooter = buildChatMessage.buildChatElements("div","card-footer text-muted", undefined,undefined);
-        const hr = buildChatMessage.buildChatElements("hr");
 
         chatBootDomFragment.appendChild(cardCenter);
         chatBootDomFragment.appendChild(cardHeader);
         cardBlock.appendChild(chat); //may need parenthesis
         chatBootDomFragment.appendChild(cardBlock);
-        chatBootDomFragment.appendChild(hr)
         cardFooter.appendChild(buildChatMessage.mainChatTextForm()); // may need parenthesis
         chatBootDomFragment.appendChild(cardFooter);
 

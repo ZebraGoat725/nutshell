@@ -5,7 +5,7 @@
 import buildChat from "./chatForm"
 import chatHandle from "./handleMessages"
 import api from "./chatApiManager"
-import parseFriends from "./friends"
+import friends from "./friends"
 
 const messenger = {
     buildMainMsg: messagesArray => {
@@ -17,12 +17,14 @@ const messenger = {
             const chatBlock = buildChat.buildChatElements("div", "msg-block", `msg-block--${msgObj.id}`, undefined);
             const message = buildChat.buildChatElements("p", "card-text",`msg-number--${msgObj.id}`, `${msgObj.message}`);
             const user = buildChat.buildChatElements("p" ,undefined, `user-msgId--${msgObj.user.id}`,`${msgObj.user.userName}`)
-
+            const hr = buildChat.buildChatElements("hr")
             const addFriendButton = buildChat.buildChatElements("button", "btn btn-primary", `add-friend--${msgObj.user.id}`, "Add Friend");
             addFriendButton.addEventListener("click", chatHandle.handlerChatAddFriend)
             
             chatBlock.appendChild(message);
             chatBlock.appendChild(user);
+            // chatBlock.appendChild(hr)
+
 
             let userId = Number(sessionStorage.getItem("userID"));
 
@@ -31,12 +33,20 @@ const messenger = {
                 // and then if they are not matches meaning then they aren't the user, add friend button
                 // also this will check verification to see if they are already friends with them and then append
                 // button
-                if(msgObj.user.id !== friendId){
-                    chatBlock.appendChild(addFriendButton)
-                }
-            }
+                console.log(friends.returnFriendsArray())
+                let friendsArray = friends.returnFriendsArray()
+                let foundFriend = friendsArray.find(theFriend => {
+                    console.log("the current friend in friend array",theFriend,"and then the current message user:",msgObj.user.id)
 
+                    return theFriend === msgObj.user.id
+                })
+                console.log(foundFriend)
+                // if(msgObj.user.id !== friendId){
+                //     chatBlock.appendChild(addFriendButton)
+                // }
+            }
             chat.appendChild(chatBlock);
+            // chat.appendChild(hr)
             // buildChat.buildChatBootStrapContainer(chatBlock);
         })
         buildChat.buildChatBootStrapContainer(chat);
