@@ -4,7 +4,7 @@ import taskForm from "./taskForm"
 import htmlFactory from "../HTMLFactory"
 //createElementWithText
 //clearContainer
-import apiManager from "../apiManager"
+import taskApiManager from "./taskApiManager"
 //getTask
 //postTask
 import task from "./task"
@@ -33,7 +33,7 @@ export default {
             targetDate: taskDateValue,
             isComplete: false
         }
-        apiManager.postTask(postObject)
+        taskApiManager.postTask(postObject)
             .then(r => {
                 let container = document.querySelector("#tasks-section")
                 htmlFactory.clearContainer(container)
@@ -43,28 +43,45 @@ export default {
     },
     //function runs when user clicks the task name or date. will clear dom, place a input field, populate field with current data
     handleEditTask(event) {
-        apiManager.getTask(data)
+        let divContainer = event.target.parentNode
+        // console.log(divContainer)
+        htmlFactory.clearContainer(divContainer)
+
+        let divId = divContainer.id.split("--")
+
+        taskApiManager.getOneTask(divId[1])
             .then(response => {
-                let divContainer = event.target.parentNode
-                console.log(divContainer)
-                htmlFactory.clearContainer(divContainer)
-                
                 let editInput = htmlFactory.createElementWithText("input")
                 editInput.size = "45"
-                
+                editInput.value = response.taskName
+                divContainer.appendChild(editInput)
+
+                let dateInput = htmlFactory.createElementWithText("input")
+                dateInput.size = "45"
+                dateInput.value = response.targetDate
+                divContainer.appendChild(dateInput)
+
                 editInput.addEventListener("keyup", (event) => {
                     if (event.keyCode === 13) {
-                        console.log("yo")
+                        this.handleSaveEdit()
                     }
                 })
-                
-                response.forEach(entry => {
-                    console.log(entry)
-                    editInput.value = event.target.textContent
-                    divContainer.appendChild(editInput)
-                })
 
+                dateInput.addEventListener("keyup", (event) => {
+                    if (event.keyCode === 13) {
+                        this.handleSaveEdit()
+                    }
+                })
             })
+
+
+
+
+
+    },
+    //function runs when you hit enter to save you edit changes, then repost all the tasks to the dom
+    handleSaveEdit() {
+        console.log("god")
     }
 }
 

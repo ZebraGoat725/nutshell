@@ -1,6 +1,7 @@
 //function to create elements and do get call to populate elements
-import apiManager from "../apiManager"
+import taskApiManager from "./taskApiManager"
 //getTask
+//postTask
 import htmlFactory from "../HTMLFactory"
 //createElementWithText
 //clearContainer
@@ -29,13 +30,13 @@ export default {
 
         let refreshButton = htmlFactory.createElementWithText("button", "Refresh")
 
-        apiManager.getTask(data)
+        taskApiManager.getTask(data)
             .then(task => {
                 task.forEach(entry => {
                     if (entry.isComplete === false){
                     let innerDiv = htmlFactory.createElementWithText("div", "", `innerDiv--${entry.id}`)
-                    let taskListItem = htmlFactory.createElementWithText("li", `${entry.taskName}---- Target Date: ${entry.targetDate}`)
-                    // let dateSpan = htmlFactory.createElementWithText("span", entry.targetDate)
+                    let taskListItem = htmlFactory.createElementWithText("li", `${entry.taskName}`)
+                    let dateSpan = htmlFactory.createElementWithText("li", entry.targetDate, `taskDate--${entry.id}`)
                     let checkBoxSpan = htmlFactory.createElementWithText("span", "Done")
                     let checkBox = htmlFactory.createElementWithText("input", "", `checkBox--${entry.id}`)
                     checkBox.type = "checkbox"
@@ -44,7 +45,7 @@ export default {
                     let hr = htmlFactory.createElementWithText("hr")
                     
                     innerDiv.appendChild(taskListItem)
-                    // innerDiv.appendChild(dateSpan)
+                    innerDiv.appendChild(dateSpan)
                     innerDiv.appendChild(checkBoxSpan)
                     innerDiv.appendChild(checkBox)
                     innerDiv.appendChild(hr)
@@ -54,9 +55,9 @@ export default {
                         taskHandler.handleEditTask(event)
                     })
 
-                    // dateSpan.addEventListener("click", () => {
-                    //     taskHandler.handleEditTask(event)
-                    // })
+                    dateSpan.addEventListener("click", () => {
+                        taskHandler.handleEditTask(event)
+                    })
                     
                 }
                 })
