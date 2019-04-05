@@ -1,7 +1,8 @@
 import HTMLFactory from "./../HTMLFactory"
 import registerForm from "./registerForm"
 import API from "./../apiManager.js"
-import friendEventHandler from "./../friendScripts/friendEventHandler"
+import loadPage from "./loadPage"
+
 
 //createNewUserObj is meant to be a factory function that is used by the post new user method.
 const createNewUserObj = (userName, userEmail) => {
@@ -27,8 +28,8 @@ const loginHandler = {
             const section = document.querySelector("#login-section");
             HTMLFactory.clearContainer(section)
         }).then(() => {
-            // Calling function to build friend section of DOM
-            friendEventHandler.handleAppendFriend()
+            // Calling function to build all sections of DOM
+            loadPage.load()
         })
 
 
