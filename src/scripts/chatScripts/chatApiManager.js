@@ -12,6 +12,19 @@ const chatApi = {
             },
             body: JSON.stringify(userMsg)
         })
+    },
+    getFriends: (userId) => {
+        return fetch(`${url}/friends/?currentUserId=${userId}&_expand=user`)
+        .then(r => r.json())
+    },
+    postCreateFriendship: (friendship) => {
+        return fetch(`${url}/friends`,{
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(friendship)
+        })
     }
 }
 

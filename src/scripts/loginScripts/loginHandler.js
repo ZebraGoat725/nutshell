@@ -1,9 +1,9 @@
 import HTMLFactory from "./../HTMLFactory"
 import registerForm from "./registerForm"
 import API from "./../apiManager.js"
-import chatSection from "./../chatScripts/chatForm";
-// import buildMainMsg from "../chatScripts/appendChat";
 import chatMsg from "./../chatScripts/appendChat"
+import friendApi from "./../chatScripts/chatApiManager"
+import parseFriends from "./../chatScripts/friends"
 
 //createNewUserObj is meant to be a factory function that is used by the post new user method.
 const createNewUserObj = (userName, userEmail) => {
@@ -25,7 +25,9 @@ const loginHandler = {
 
                     const section = document.querySelector("#login-section");
                     HTMLFactory.clearContainer(section);
-                    API.getMessages().then(msgArray => chatMsg.buildMainMsg(msgArray))
+                    let userID = sessionStorage.getItem("userID");
+                    friendApi.getFriends(userID).then(response => parseFriends.getFriendId(response)).then(API.getMessages().then(msgArray => chatMsg.buildMainMsg(msgArray)))
+                    
                 }
             })
         })
