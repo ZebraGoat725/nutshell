@@ -23,6 +23,7 @@ import msgs from "./appendChat"
 const buildChatMessage = {
     buildChatElements: (element, elementClass, id, elementTextContent) => {
         //this function will build each element for the chat message
+        // it's simply a generic html builder specifically for the container
         const elm = document.createElement(element);
         if (elementTextContent) {
             elm.textContent = elementTextContent;
@@ -51,9 +52,9 @@ const buildChatMessage = {
         return chatForm;
     },
     buildChatBootStrapContainer: function(chat) {
-        // this component will create the main bootstrap structure and also append the mainChatBlock
-        // that will contain the all the user messages and the mainChatTextForm that will allow the user to enter
-        // there new message
+        // this component will create the main bootstrap structure which has a parameter being passed into it
+        // this parameter is from the appendChat.js that parses the fetch call 
+        // 
         const chatBootDomFragment = document.createDocumentFragment();
         const cardCenter = buildChatMessage.buildChatElements("div","card text-center");
         const cardHeader = buildChatMessage.buildChatElements("div", "card-header",undefined, "Chat Room");
