@@ -15,11 +15,11 @@ const articleSection = {
             console.log(parsedArray)
             parsedArray.forEach(obj => {
                 const objectTitle = HTMLFactory.createElementWithText("p", `${obj.title}`, "objectTitle")
-                const objectSynopsis = HTMLFactory.createElementWithText("p", `${obj.synopsis}`, "objectSynopsis")
-                const objectUrl = HTMLFactory.createElementWithText("p", `${obj.url}`, "objectUrl")
+                // const objectSynopsis = HTMLFactory.createElementWithText("p", `${obj.synopsis}`, "objectSynopsis")
+                // const objectUrl = HTMLFactory.createElementWithText("p", `${obj.url}`, "objectUrl")
                 fragment.appendChild(objectTitle)
-                fragment.appendChild(objectSynopsis)
-                fragment.appendChild(objectUrl)
+                // fragment.appendChild(objectSynopsis)
+                // fragment.appendChild(objectUrl)
                 //  buildArticle(fragment)
             });
         }).then(e => {
