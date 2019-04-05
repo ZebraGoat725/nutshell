@@ -1,5 +1,4 @@
 // this is the object for the api fetch calls.
-import chatRoom from "./../scripts/chatScripts/chatForm"
 
 //the main url
 const url = "http://localhost:8088";

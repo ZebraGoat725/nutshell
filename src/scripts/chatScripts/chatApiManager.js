@@ -25,6 +25,10 @@ const chatApi = {
             },
             body: JSON.stringify(friendship)
         })
+    },
+    getMessages: () => {
+        return fetch(`${url}/messages?_expand=user`)
+        .then(r => r.json())
     }
 }
 

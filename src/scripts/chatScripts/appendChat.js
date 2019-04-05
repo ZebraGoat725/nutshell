@@ -17,9 +17,10 @@ const messenger = {
             const chatBlock = buildChat.buildChatElements("div", "msg-block", `msg-block--${msgObj.id}`, undefined);
             const message = buildChat.buildChatElements("p", "card-text",`msg-number--${msgObj.id}`, `${msgObj.message}`);
             const user = buildChat.buildChatElements("p" ,undefined, `user-msgId--${msgObj.user.id}`,`${msgObj.user.userName}`)
+            user.addEventListener("click", chatHandle.handlerChatAddFriend);
             const hr = buildChat.buildChatElements("hr")
-            const addFriendButton = buildChat.buildChatElements("button", "btn btn-primary", `add-friend--${msgObj.user.id}`, "Add Friend");
-            addFriendButton.addEventListener("click", chatHandle.handlerChatAddFriend)
+            // const addFriendButton = buildChat.buildChatElements("button", "btn btn-primary", `add-friend--${msgObj.user.id}`, "Add Friend");
+            // addFriendButton.addEventListener("click", chatHandle.handlerChatAddFriend)
             
             chatBlock.appendChild(message);
             chatBlock.appendChild(user);
