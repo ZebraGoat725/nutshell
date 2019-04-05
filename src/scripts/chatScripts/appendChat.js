@@ -13,7 +13,7 @@ const messenger = {
             // I want to go throught the array of objs and parse the info
             const chatBlock = buildChat.buildChatElements("div", undefined, `msg-block--${msgObj.id}`, undefined);
             const message = buildChat.buildChatElements("p", "card-text",`msg-number--${msgObj.id}`, `${msgObj.message}`);
-            const user = buildChat.buildChatElements("span" ,undefined, `user-msgId--${msgObj.id}`,`${msgObj.user.userName}`)
+            const user = buildChat.buildChatElements("p" ,undefined, `user-msgId--${msgObj.id}`,`${msgObj.user.userName}`)
             chatBlock.appendChild(message);
             chatBlock.appendChild(user);
             chat.appendChild(chatBlock);
