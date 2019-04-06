@@ -11,7 +11,7 @@ const buildFriendsSection = {
         let userPic = HTMLFactory.createElementWithText("IMG");
         userPic.setAttribute("src", userImage)
         divSideBar.appendChild(userPic);
-        divSideBar.appendChild(HTMLFactory.createElementWithText("h3", userName));
+        divSideBar.appendChild(HTMLFactory.createElementWithText("h3", userName, "current-user-name"));
         divSideBar.appendChild(HTMLFactory.createElementWithText("h3", userEmail));
         divSideBar.appendChild(HTMLFactory.createElementWithText("hr"));
         return divSideBar;
@@ -37,6 +37,14 @@ const buildFriendsSection = {
         addFriendButton.addEventListener("click", friendEventHandler.addFriend)
         saveFriendDiv.appendChild(addFriendButton);
         return saveFriendDiv;
+    },
+    // Factory function to create a friend object to be posted to friends resource
+    createFriendObject(currentUserId, friendID) {
+        let friendObj = {
+            "currentUserId": currentUserId,
+            "userId": friendID
+        };
+        return friendObj;
     }
 };
 

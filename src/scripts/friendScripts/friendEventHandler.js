@@ -1,13 +1,15 @@
 import appendFriendsSection from "./appendFriendsSection"
 import HTMLFactory from "./../HTMLFactory"
 import apiFriends from "./apiManagerFriends"
-import API from "../apiManager";
+import API from "../apiManager"
+import buildFriendsSection from "./buildFriendsSection"
 
 const friendsContainer = document.querySelector("#friends-section");
 
 const friendEventHandler = {
     // Function to append friend section to DOM to be later combined with other functions to populate DOM on login
     handleAppendFriend() {
+        HTMLFactory.clearContainer(friendsContainer);
         appendFriendsSection.appendSection();
     },
     // Function to delete friend connection from API and append updated list of friends to DOM
@@ -30,24 +32,45 @@ const friendEventHandler = {
         saveFriendButton.addEventListener("click", friendEventHandler.saveFriend);
         friendsContainer.appendChild(saveFriendButton);
     },
-    // Function to POST new friend connection to friends
+    // Function to POST new friend connection to friends resource
     saveFriend() {
+        let userID = sessionStorage.getItem("userID");
         let friendToSave = document.getElementById("add-friend-input").value;
+        let currentUserName = document.getElementById("current-user-name").textContent;
         let userNames = [];
-        console.log(friendToSave)
+        let friendNames = [];
+
         return API.getResources("users")
             .then(users => {
-                return users.forEach(user => {
-                    console.log(user.userName.toLowerCase())
-                    userNames.push(user.userName.toLowerCase())
+                users.forEach(user => {
+                    return userNames.push(user)
                 })
             })
             .then(() => {
+                return apiFriends.getFriends(userID)
+                    .then(friends => {
+                        friends.forEach(friend => {
+                            return friendNames.push(friend.user.userName.toLowerCase())
+                        })
+                    })
+            })
+            .then(() => {
                 let foundUser = userNames.find(friend => {
+                    return friend.userName.toLowerCase() === friendToSave.toLowerCase()
+                });
+                let foundFriend = friendNames.find(friend => {
                     return friend === friendToSave.toLowerCase()
                 });
                 if (foundUser === undefined) {
                     alert(`${friendToSave} does not have an account`)
+                } else if (foundFriend === friendToSave.toLowerCase()) {
+                    alert(`You are already friends with ${friendToSave}`)
+                } else if (currentUserName.toLowerCase() === friendToSave.toLowerCase()) {
+                    alert("That is just sad")
+                } else {
+                    let friendObj = buildFriendsSection.createFriendObject(Number(userID), foundUser.id)
+                    apiFriends.postFriend(friendObj)
+                        .then(friendEventHandler.handleAppendFriend())
                 }
             })
     }
