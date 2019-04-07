@@ -46,7 +46,19 @@ const messenger = {
                         //go thru the loop of found friends of current user and if
                         // if no match,alert user to add friend
                         console.log(friend)
-                        if(msgObj.user.id !== friend){
+                        if(msgObj.user.id === friend){
+                            alert("this is your friend")
+                            console.log("a friend of yours")
+                            // let returnValue = confirm("Are you sure you want to add as a friend?")
+                            // if(returnValue){
+                            //     // if true add the user as a friend
+                            //     console.log("confirm works")
+                            //     let newFriend = createNewFriend(userId, msgObj.user.id)
+                            //     api.postCreateFriendship(newFriend);
+                            // }else{
+                            //     alert("this is your friend")
+                            // }
+                        }else if(msgObj.user.id !== friend){
                             let returnValue = confirm("Are you sure you want to add as a friend?")
                             if(returnValue){
                                 // if true add the user as a friend
@@ -54,10 +66,7 @@ const messenger = {
                                 let newFriend = createNewFriend(userId, msgObj.user.id)
                                 api.postCreateFriendship(newFriend);
                             }
-                        }else{
-                            alert("this is your friend")
                         }
-
                     })
                 }
             });
