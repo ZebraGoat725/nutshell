@@ -31,8 +31,17 @@ const chatApi = {
         .then(r => r.json())
     },
     deleteMessage: (msgId) => {
-        return fetch(`${url}/messages/mgsId`,{
+        return fetch(`${url}/messages/${msgId}`,{
             method: "DELETE"
+        })
+    },
+    putMessage: (msgObj,msgId) => {
+        return fetch(`${url}/messages/${msgId}`,{
+            method: "PUT",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(msgObj)
         })
     }
 }

@@ -45,21 +45,48 @@ const chatHandlers = {
         const valueToBeUpdated = document.querySelector(`#msg-number--${parentId}`).textContent;
         HTMLfactory.clearContainer(updateDiv);
     
+        const updateLabel = chatBuild.buildChatElements("label", undefined, undefined, "Message: ")
+        updateLabel.for=`msg-update--${parentId}`
         const updateInput = chatBuild.buildChatElements("input", undefined,`msg-update--${parentId}`, undefined);
         updateInput.type = "text"
         updateInput.value = valueToBeUpdated;
     
         const saveButton = chatBuild.buildChatElements("button", "btn btn-primary", `save-msg--${parentId}`, "Update")
         saveButton.addEventListener("click",chatHandlers.handleSaveButton);
+        updateDiv.appendChild(updateLabel);
         updateDiv.appendChild(updateInput);
         updateDiv.appendChild(saveButton);
     },
     handlerDeleteChatButton: () => {
         // make a delete request
         console.log(event.target.parentNode.id.split("--")[1])
+        const msgBlockId = event.target.parentNode.id.split("--")[1];
+        chatApi.deleteMessage(msgBlockId).then(()=>{
+            const msgContainer = document.querySelector("#messages-section");
+            HTMLfactory.clearContainer(msgContainer)
+            chatApi.getMessages().then(msgArray => {
+                console.log("delete done")
+                chatMsg.buildMainMsg(msgArray);
+            })
+        })
+
     },
     handleSaveButton: () => {
-        console.log(event.target.parentNode.id)
+        // console.log(event.target.parentNode.id)// gives the msgId, I have the user already
+        const msgBlockId = event.target.parentNode.id.split("--")[1];
+        let userId = Number(sessionStorage.getItem("userID"));
+        const theMessage = document.querySelector(`#msg-update--${msgBlockId}`)
+        // console.log(theMessage.value)
+        let updatedMessageObj = createNewMsg(userId, theMessage.value)
+        // console.log(updatedMessageObj)
+        chatApi.putMessage(updatedMessageObj, msgBlockId).then(()=>{
+            const msgContainer = document.querySelector("#messages-section");
+            HTMLfactory.clearContainer(msgContainer)
+            chatApi.getMessages().then(msgArray => {
+                console.log("update done")
+                chatMsg.buildMainMsg(msgArray);
+            })
+        })
     }
 }
 export default chatHandlers
