@@ -28,8 +28,6 @@ const chatHandlers = {
         // called createNewMsg and return a newMsg then the handler will pass that to the chatApi post fetch call
         let userId = Number(sessionStorage.getItem("userID"));
         console.log(userId)
-        // console.log("button pressed")
-        // console.log(document.querySelector("#user-message").value);
         const userMessage = document.querySelector("#user-message").value;
 
         let newMsg = createNewMsg(userId, userMessage) //calling the factory function
@@ -37,9 +35,11 @@ const chatHandlers = {
             // clear the container and see the new messages
             const msgContainer = document.querySelector("#messages-section");
             HTMLfactory.clearContainer(msgContainer);
-            
+            //go and get new msgs to append on dom
+            chatApi.getMessages().then(msgArray => {
+                chatMsg.buildMainMsg(msgArray)
+            })
         })
-        chatApi.getFriends(userId).then(response => parseFriends.getFriendId(response)).then(chatApi.getMessages().then(msgArray => chatMsg.buildMainMsg(msgArray)))
     },
     handlerChatAddFriend: () => {
         // this function will handle the event of adding a friend to the db

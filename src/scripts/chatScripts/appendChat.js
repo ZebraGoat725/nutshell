@@ -7,6 +7,14 @@ import chatHandle from "./handleMessages"
 import api from "./chatApiManager"
 import friends from "./friends"
 
+
+//factory function to create a new friendship
+const createNewFriend = (userId, friendId) => {
+    return {
+     currentUserId: userId,
+     userId: friendId
+    }
+ }
 const messenger = {
     buildMainMsg: messagesArray => {
     // this will populate the messages
@@ -18,59 +26,40 @@ const messenger = {
             const message = buildChat.buildChatElements("p", "card-text",`msg-number--${msgObj.id}`, `${msgObj.message}`);
             const user = buildChat.buildChatElements("p" ,undefined, `user-msgId--${msgObj.user.id}`,`${msgObj.user.userName}`)
             user.addEventListener("click", () => {
+                // this will check to see if the current user(userId) is the same as the msg's user
+                let userId = Number(sessionStorage.getItem("userID"));
                 if(msgObj.user.id !== userId){
-                    console.log("not my friend")
-                    // this will check to see if the current user(userId) is the same as the msg's user
-                    // and then if they are not matches meaning then they aren't the current user, add friend button
+                    console.log("not me, another user")
+                    // and if they ids don't match, it means it's a different user
                     // also this will check verification to see if they are already friends with them
                     let friendsArray = friends.returnFriendsArray()
-                    let foundFriend = friendsArray.find(theFriend => {
-                        return theFriend === msgObj.user.id
-                    })
                     console.log("The friends array:",friendsArray)
-                    foundFriend.forEach(friend => {
+                
+                    friendsArray.forEach(friend => {
                         //go thru the loop of found friends of current user and if
-                        //they are not friends add a hyperlink
+                        // if no match,alert user to add friend
+                        console.log(friend)
                         if(msgObj.user.id !== friend){
                             let returnValue = confirm("Are you sure you want to add as a friend?")
                             if(returnValue){
                                 // if true add the user as a friend
                                 console.log("confirm works")
+                                let newFriend = createNewFriend(userId, msgObj.user.id)
+                                api.postCreateFriendship(newFriend);
                             }
+                        }else{
+                            alert("this is your friend")
                         }
+
                     })
                 }
             });
-            const hr = buildChat.buildChatElements("hr")
             // const addFriendButton = buildChat.buildChatElements("button", "btn btn-primary", `add-friend--${msgObj.user.id}`, "Add Friend");
             // addFriendButton.addEventListener("click", chatHandle.handlerChatAddFriend)
-            
             chatBlock.appendChild(message);
             chatBlock.appendChild(user);
-            // chatBlock.appendChild(hr)
-
-
-            let userId = Number(sessionStorage.getItem("userID"));
-
-            // if(msgObj.user.id !== userId){
-            //     // this will check to see if the current user(userId) is the same as the msg's user
-            //     // and then if they are not matches meaning then they aren't the current user, add friend button
-            //     // also this will check verification to see if they are already friends with them
-            //     let friendsArray = friends.returnFriendsArray()
-            //     let foundFriend = friendsArray.find(theFriend => {
-            //         return theFriend === msgObj.user.id
-            //     })
-            //     foundFriend.forEach(friend => {
-            //         //go thru the loop of found friends of current user and if
-            //         //they are not friends add a hyperlink
-            //         if(msgObj.user.id !== friend){
-                        
-            //         }
-            //     })
-            // }
             chat.appendChild(chatBlock);
-            // chat.appendChild(hr)
-            // buildChat.buildChatBootStrapContainer(chatBlock);
+
         })
         buildChat.buildChatBootStrapContainer(chat);
     }
