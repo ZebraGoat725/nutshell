@@ -1,8 +1,8 @@
 // this component will create the handlders that will be used for the messages
 import chatApi from "./chatApiManager";
 import HTMLfactory from "../HTMLFactory"
-// import builderChat from "./appendChat"
 import chatMsg from "./appendChat"
+import chatBuild from "./chatForm"
 
 // this is a factory functions that will create the objs that will create the messages and
 // and the friendships respectively to be posted in the db
@@ -30,12 +30,36 @@ const chatHandlers = {
             HTMLfactory.clearContainer(msgContainer);
             //go and get new msgs to append on dom
             chatApi.getMessages().then(msgArray => {
+                console.log("helllllo")
                 chatMsg.buildMainMsg(msgArray)
+                chatMsg.buildEditAndDelete(msgArray)
             })
         })
-        // as soon as this is called, go to the build edit and delete function
-        // that will create the buttons on the last msg
-        chatMsg.buildEditAndDelete()
+    },
+    handlerEditChatButton: () => {
+        // make a put request
+        console.log(event.target.parentNode.id.split("--")[1])
+        const parentId = event.target.parentNode.id.split("--")[1];
+        const updateDiv = document.querySelector(`#msg-block--${parentId}`)
+        console.log(document.querySelector(`#msg-number--${parentId}`).textContent)
+        const valueToBeUpdated = document.querySelector(`#msg-number--${parentId}`).textContent;
+        HTMLfactory.clearContainer(updateDiv);
+    
+        const updateInput = chatBuild.buildChatElements("input", undefined,`msg-update--${parentId}`, undefined);
+        updateInput.type = "text"
+        updateInput.value = valueToBeUpdated;
+    
+        const saveButton = chatBuild.buildChatElements("button", "btn btn-primary", `save-msg--${parentId}`, "Update")
+        saveButton.addEventListener("click",chatHandlers.handleSaveButton);
+        updateDiv.appendChild(updateInput);
+        updateDiv.appendChild(saveButton);
+    },
+    handlerDeleteChatButton: () => {
+        // make a delete request
+        console.log(event.target.parentNode.id.split("--")[1])
+    },
+    handleSaveButton: () => {
+        console.log(event.target.parentNode.id)
     }
 }
 export default chatHandlers

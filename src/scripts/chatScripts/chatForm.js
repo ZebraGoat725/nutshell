@@ -1,6 +1,4 @@
 // This component will essentially build the chat form fields
-import api from "./../apiManager"
-import msgs from "./appendChat"
 import chatHandle from "./handleMessages"
 
 

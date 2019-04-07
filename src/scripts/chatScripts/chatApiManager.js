@@ -29,6 +29,11 @@ const chatApi = {
     getMessages: () => {
         return fetch(`${url}/messages?_expand=user`)
         .then(r => r.json())
+    },
+    deleteMessage: (msgId) => {
+        return fetch(`${url}/messages/mgsId`,{
+            method: "DELETE"
+        })
     }
 }
 

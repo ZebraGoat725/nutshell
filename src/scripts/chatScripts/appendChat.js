@@ -8,13 +8,20 @@ import api from "./chatApiManager"
 import friends from "./friends"
 
 
-//factory function to create a new friendship
+//factory function to create a new friendship and new/updated msg
 const createNewFriend = (userId, friendId) => {
     return {
      currentUserId: userId,
      userId: friendId
     }
  }
+const createNewMsg = (userId, msg) => {
+    return {
+     userId: userId,
+     message: msg
+    }
+ }
+
 const messenger = {
     buildMainMsg: messagesArray => {
     // this will populate the messages
@@ -63,8 +70,41 @@ const messenger = {
         })
         buildChat.buildChatBootStrapContainer(chat);
     },
-    buildEditAndDelete:() =>{
+    buildEditAndDelete: messagesArray =>{
+        // this function will parse all the messages and grab all the message values
+        // and retrieve the current user's lastest message and append an edit/delete
+        // button on it.
+        let userId = Number(sessionStorage.getItem("userID"));
+        let currentUserMsgs = []; // store all the current user's msgs
+        messagesArray.forEach(msg => {
+            let currUser = msg.user.id
+            if(currUser === userId){
+                // push all the current user's msg into array
+                currentUserMsgs.push(msg)
+            }
+        });
+        console.log(currentUserMsgs.length)
+        // go thru each element in array and find the most reacent
+        let lastestMsg = currentUserMsgs[currentUserMsgs.length-1]
+        console.log(lastestMsg,lastestMsg.id)
+        //using the msgId, I can target that specific msg
+        let lastMsgDiv = document.querySelector(`#msg-block--${lastestMsg.id}`)
+        // console.log(lastMsgDiv)
+        const buttonGroup = document.createElement("div"); //bootstrap
+        buttonGroup.classList = "btn-group"
+        buttonGroup.setAttribute("role", "group")
+        buttonGroup.setAttribute("aria-label", "Edit/Delete")
+        buttonGroup.id = `msg--${lastestMsg.id}`
         
+        const editButton = buildChat.buildChatElements("button","btn btn-primary",`edit-userMsg--${lastestMsg.id}`,"Edit");
+        editButton.addEventListener("click",chatHandle.handlerEditChatButton);
+        const deleteButton = buildChat.buildChatElements("button","btn btn-danger",`delete-userMsg--${lastestMsg.id}`,"Delete")
+        deleteButton.addEventListener("click", chatHandle.handlerDeleteChatButton);
+
+        buttonGroup.appendChild(editButton);
+        buttonGroup.appendChild(deleteButton);
+        lastMsgDiv.appendChild(buttonGroup);
+
     }
 }
 
