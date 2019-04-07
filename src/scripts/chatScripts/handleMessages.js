@@ -1,8 +1,7 @@
 // this component will create the handlders that will be used for the messages
 import chatApi from "./chatApiManager";
 import HTMLfactory from "../HTMLFactory"
-
-import parseFriends from "./friends"
+// import builderChat from "./appendChat"
 import chatMsg from "./appendChat"
 
 // this is a factory functions that will create the objs that will create the messages and
@@ -14,12 +13,6 @@ const createNewMsg = (userId, msg) => {
    }
 }
 
-const createNewFriend = (userId, friendId) => {
-    return {
-     currentUserId: userId,
-     userId: friendId
-    }
- }
 
 
 const chatHandlers = {
@@ -40,19 +33,9 @@ const chatHandlers = {
                 chatMsg.buildMainMsg(msgArray)
             })
         })
-    },
-    handlerChatAddFriend: () => {
-        // this function will handle the event of adding a friend to the db
-        // the user will be able to click on a friend on the chat message and
-        // see if they are a friend, if not, the add option will be presented
-        let userId = Number(sessionStorage.getItem("userID"));
-        const friendId = Number(event.target.parentNode.id.split("--")[1]);
-        console.log("add friend button")
-        console.log("friend's id is", friendId)
-        console.log("the current user ",userId)
-
-        let newFriend = createNewFriend(userId, friendId); //calling the factory function
-        chatApi.postCreateFriendship(newFriend)
+        // as soon as this is called, go to the build edit and delete function
+        // that will create the buttons on the last msg
+        chatMsg.buildEditAndDelete()
     }
 }
 export default chatHandlers

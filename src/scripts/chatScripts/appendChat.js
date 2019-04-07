@@ -62,6 +62,9 @@ const messenger = {
 
         })
         buildChat.buildChatBootStrapContainer(chat);
+    },
+    buildEditAndDelete:() =>{
+        
     }
 }
 
