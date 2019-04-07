@@ -43,12 +43,4 @@ const chatHandlers = {
         chatApi.postCreateFriendship(newFriend)
     }
 }
-
 export default chatHandlers
-
-/*
-const section = document.querySelector("#login-section");
-HTMLFactory.clearContainer(section);
-let userID = sessionStorage.getItem("userID");
-friendApi.getFriends(userID).then(response => parseFriends.getFriendId(response)).then(API.getMessages().then(msgArray => chatMsg.buildMainMsg(msgArray)))
-*/

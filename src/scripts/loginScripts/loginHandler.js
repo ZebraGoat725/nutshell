@@ -1,9 +1,6 @@
 import HTMLFactory from "./../HTMLFactory"
 import registerForm from "./registerForm"
 import API from "./../apiManager.js"
-import chatMsg from "./../chatScripts/appendChat"
-import friendApi from "./../chatScripts/chatApiManager"
-import parseFriends from "./../chatScripts/friends"
 import loadPage from "./loadPage"
 
 
@@ -24,12 +21,6 @@ const loginHandler = {
             users.forEach(user => {
                 if (userName === user.userName.toLowerCase() && userEmail === user.email.toLowerCase()) {
                     sessionStorage.setItem("userID", user.id)
-
-                    const section = document.querySelector("#login-section");
-                    HTMLFactory.clearContainer(section);
-                    let userID = sessionStorage.getItem("userID");
-                    friendApi.getFriends(userID).then(response => parseFriends.getFriendId(response)).then(API.getMessages().then(msgArray => chatMsg.buildMainMsg(msgArray)))
-                    
                 }
             })
         }).then(() => {
