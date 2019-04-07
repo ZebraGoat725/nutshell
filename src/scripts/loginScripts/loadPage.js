@@ -1,7 +1,7 @@
 import friendEventHandler from "./../friendScripts/friendEventHandler"
 import eventsData from "../eventScripts/eventsDataManager"
-import eventHTML from "../eventScripts/eventHTML";
-
+import eventHTML from "../eventScripts/eventHTML"
+import buildNavbar from "./../buildNavbar"
 
 
 const loadPage = {
@@ -9,6 +9,10 @@ const loadPage = {
         
         // Calling function to build friend section of DOM
         friendEventHandler.handleAppendFriend()
+
+        // Calling function to build navbar
+        buildNavbar.buildList();
+
         let userID = sessionStorage.getItem("userID");
         return eventsData.getEvents(userID).then(response => {
             return eventHTML.listEventsToDom(response)
