@@ -4,9 +4,6 @@ import eventHTML from "../eventScripts/eventHTML";
 import friendChatApi from "./../chatScripts/chatApiManager"
 import parseFriends from "./../chatScripts/friends"
 import chatMsg from "./../chatScripts/appendChat"
-// import chatMsg from "./../chatScripts/appendChat"
-// import friendApi from "./../chatScripts/chatApiManager"
-// import parseFriends from "./../chatScripts/friends"
 
 const loadPage = {
     load() {

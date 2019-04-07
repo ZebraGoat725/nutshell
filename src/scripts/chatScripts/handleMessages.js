@@ -1,5 +1,9 @@
 // this component will create the handlders that will be used for the messages
 import chatApi from "./chatApiManager";
+import HTMLfactory from "../HTMLFactory"
+
+import parseFriends from "./friends"
+import chatMsg from "./appendChat"
 
 // this is a factory functions that will create the objs that will create the messages and
 // and the friendships respectively to be posted in the db
@@ -24,15 +28,23 @@ const chatHandlers = {
         // called createNewMsg and return a newMsg then the handler will pass that to the chatApi post fetch call
         let userId = Number(sessionStorage.getItem("userID"));
         console.log(userId)
-        console.log("button pressed")
-        console.log(document.querySelector("#user-message").value);
+        // console.log("button pressed")
+        // console.log(document.querySelector("#user-message").value);
         const userMessage = document.querySelector("#user-message").value;
 
         let newMsg = createNewMsg(userId, userMessage) //calling the factory function
-        chatApi.postCreateMessage(newMsg)
+        chatApi.postCreateMessage(newMsg).then(()=>{
+            // clear the container and see the new messages
+            const msgContainer = document.querySelector("#messages-section");
+            HTMLfactory.clearContainer(msgContainer);
+            
+        })
+        chatApi.getFriends(userId).then(response => parseFriends.getFriendId(response)).then(chatApi.getMessages().then(msgArray => chatMsg.buildMainMsg(msgArray)))
     },
     handlerChatAddFriend: () => {
         // this function will handle the event of adding a friend to the db
+        // the user will be able to click on a friend on the chat message and
+        // see if they are a friend, if not, the add option will be presented
         let userId = Number(sessionStorage.getItem("userID"));
         const friendId = Number(event.target.parentNode.id.split("--")[1]);
         console.log("add friend button")
