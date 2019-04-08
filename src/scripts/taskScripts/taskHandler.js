@@ -54,11 +54,13 @@ export default {
                 let editInput = htmlFactory.createElementWithText("input", "", `editInput--${response.id}`)
                 editInput.size = "45"
                 editInput.value = response.taskName
+                editInput.classList = "editInput"
                 divContainer.appendChild(editInput)
 
                 let dateInput = htmlFactory.createElementWithText("input", "", `dateInput--${response.id}`)
                 dateInput.size = "45"
                 dateInput.value = response.targetDate
+                dateInput.classList = "dateInput"
                 divContainer.appendChild(dateInput)
 
                 editInput.addEventListener("keyup", (event) => {
