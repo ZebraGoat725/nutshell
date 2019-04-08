@@ -1,19 +1,13 @@
 import friendEventHandler from "./../friendScripts/friendEventHandler"
 import task from "../taskScripts/task"
 import eventsData from "../eventScripts/eventsDataManager"
-<<<<<<< HEAD
-import eventHTML from "../eventScripts/eventHTML";
+import eventHTML from "../eventScripts/eventHTML"
 import articleSection from "../articleScripts/article"
 import apiCall from "../articleScripts/articleApi"
-
-
-=======
-import eventHTML from "../eventScripts/eventHTML"
 import buildNavbar from "./../buildNavbar"
 import friendChatApi from "./../chatScripts/chatApiManager"
 import parseFriends from "./../chatScripts/friends"
 import chatMsg from "./../chatScripts/appendChat"
->>>>>>> master
 
 const loadPage = {
     load() {
@@ -24,9 +18,6 @@ const loadPage = {
 
         // Calling function to build friend section of DOM
         friendEventHandler.handleAppendFriend()
-<<<<<<< HEAD
-        let userID = Number(sessionStorage.getItem("userID"));
-=======
 
         // Calling function to build navbar
         buildNavbar.buildList();
@@ -34,7 +25,6 @@ const loadPage = {
         let taskContainer = document.querySelector("#tasks-section")
         taskContainer.appendChild(task.createTask())
         
->>>>>>> master
         return eventsData.getEvents(userID).then(response => {
             return eventHTML.listEventsToDom(response)
         }).then(() => {

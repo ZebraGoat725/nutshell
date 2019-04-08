@@ -10,21 +10,29 @@ const articleSection = {
     buildArticleWithObj: function (articleArray) {
         // building out thr object returned from the fetch call
         let fragment = document.createDocumentFragment()
+        let articleBody = document.querySelector("#articleBody")
         const userID = sessionStorage.getItem("userID")
         articleArray.forEach(obj => {
+            const eachArticleConatainer = HTMLFactory.createElementWithText("div")
             const objectTitle = HTMLFactory.createElementWithText("p", `${obj.title}`, "objectTitle")
             const objectSynopsis = HTMLFactory.createElementWithText("p", `${obj.synopsis}`, "objectSynopsis")
             const objectUrl = HTMLFactory.createElementWithText("p", `${obj.url}`, "objectUrl")
-            fragment.appendChild(objectTitle)
-            fragment.appendChild(objectSynopsis)
-            fragment.appendChild(objectUrl)
+            eachArticleConatainer.appendChild(objectTitle)
+            eachArticleConatainer.appendChild(objectSynopsis)
+            eachArticleConatainer.appendChild(objectUrl)
+            fragment.appendChild(eachArticleConatainer)
+            articleBody.appendChild(fragment)
             if(obj.userId === Number(userID)) {
+                eachArticleConatainer.classList.add("myArticles")
                 const articleEdit = HTMLFactory.createElementWithText("button", "Edit Article", `articleEdit--${obj.id}`)
                 articleEdit.addEventListener("click", articleHandler.handleEdit)
                 const articleDelete = HTMLFactory.createElementWithText("button", "Delete Article", `articleDelete--${obj.id}`)
                 articleDelete.addEventListener("click", articleHandler.handeDelete)
                 fragment.appendChild(articleEdit)
                 fragment.appendChild(articleDelete)
+                articleBody.appendChild(fragment)
+            }else {
+                eachArticleConatainer.classList.add("friendArticles")
             }
         })
                 let articleDom = document.getElementById("articles-section")
