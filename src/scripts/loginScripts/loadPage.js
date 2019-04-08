@@ -6,10 +6,12 @@ import buildNavbar from "./../buildNavbar"
 import friendChatApi from "./../chatScripts/chatApiManager"
 import parseFriends from "./../chatScripts/friends"
 import chatMsg from "./../chatScripts/appendChat"
+import clearSections from "./../clearSections"
 
 const loadPage = {
     load() {
         let userID = sessionStorage.getItem("userID");
+        clearSections.clearAllSections()
 
         // call to load the chat messages section to the DOM
         friendChatApi.getFriends(userID).then(response => parseFriends.getFriendId(response)).then(friendChatApi.getMessages().then(msgArray => chatMsg.buildMainMsg(msgArray)))

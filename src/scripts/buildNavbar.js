@@ -14,7 +14,6 @@ const navbar = document.getElementById("main-nav");
 const buildNavbar = {
     // Function to build NavBar including links to sections and log out button
     buildList() {
-        HTMLFactory.clearContainer(navbar)
         let userName = sessionStorage.getItem("userName")
         const sectionList = HTMLFactory.createElementWithText("ul");
         const taskLi = HTMLFactory.createLiEl("TASKS");
