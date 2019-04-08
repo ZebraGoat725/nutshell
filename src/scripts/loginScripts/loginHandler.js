@@ -45,8 +45,13 @@ const loginHandler = {
         const section = document.querySelector("#login-section");
         const newNameInput = document.querySelector("#registerName-input").value;
         const newEmailInput = document.querySelector("#registerEmail-input").value;
-        API.postCreateUser(createNewUserObj(newNameInput, newEmailInput));
+        API.postCreateUser(createNewUserObj(newNameInput, newEmailInput))
+        .then(entry => {
+            sessionStorage.setItem("userID", entry.id)
+        })
         HTMLFactory.clearContainer(section);
+        loadPage.load()
+        
     }
 };
 
