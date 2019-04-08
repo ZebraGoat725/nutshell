@@ -1,0 +1,30 @@
+.innerDiv{
+   display: grid;
+   grid-template-columns: 20%;
+   /* grid-template-rows: 20%; */
+   justify-items: start;
+}
+
+.taskListItem{
+    grid-column-start: 1;
+}
+
+.dateSpan{
+    grid-column-start: 4;
+}
+
+.checkBox{
+    grid-column-start: 5;
+}
+
+.checkBoxSpan{
+    grid-column-start: 5;
+}
+
+.editInput{
+    grid-column-start: 1;
+}
+
+.dateInput{
+    grid-column-start: 3;
+}

@@ -12,7 +12,7 @@ export default {
         let formFragment = document.createDocumentFragment()
 
         let saveTaskButton = htmlFactory.createElementWithText("button", "Save New Task")
-
+        saveTaskButton.classList = "btn btn-primary"
         let newTaskSpan = htmlFactory.createElementWithText("span", "", "newTaskSpan")
 
         let taskLabel = htmlFactory.createElementWithText("label", "New Task: ")
