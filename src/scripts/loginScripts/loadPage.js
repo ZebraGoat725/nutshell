@@ -1,4 +1,5 @@
 import friendEventHandler from "./../friendScripts/friendEventHandler"
+import task from "../taskScripts/task"
 import eventsData from "../eventScripts/eventsDataManager"
 import eventHTML from "../eventScripts/eventHTML";
 
@@ -9,6 +10,8 @@ const loadPage = {
         
         // Calling function to build friend section of DOM
         friendEventHandler.handleAppendFriend()
+        let taskContainer = document.querySelector("#tasks-section")
+        taskContainer.appendChild(task.createTask())
         let userID = sessionStorage.getItem("userID");
         return eventsData.getEvents(userID).then(response => {
             return eventHTML.listEventsToDom(response)
