@@ -49,17 +49,6 @@ const loginHandler = {
             }
         })
         }
-        
-        //.then(() => {
-        //     // let userID = sessionStorage.getItem("userID");
-            
-            
-        // }).then(() => {
-        //     // Calling function to build all sections of DOM
-        //     loadPage.load()
-        // })
-
-
     },
     // Function to handle user clicking register button. Function clears page, calls registerForm and appends to registerSection and then appends to body
     register() {
