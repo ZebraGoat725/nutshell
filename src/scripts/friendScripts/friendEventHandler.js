@@ -79,7 +79,7 @@ const friendEventHandler = {
                     } else {
                         let friendObj = buildFriendsSection.createFriendObject(Number(userID), foundUser.id)
                         apiFriends.postFriend(friendObj)
-                            .then(friendEventHandler.handleAppendFriend())
+                            .then(loadPage.load())
                     }
                 })
         }

@@ -54,11 +54,13 @@ export default {
                 let editInput = htmlFactory.createElementWithText("input", "", `editInput--${response.id}`)
                 editInput.size = "45"
                 editInput.value = response.taskName
+                editInput.classList = "editInput"
                 divContainer.appendChild(editInput)
 
                 let dateInput = htmlFactory.createElementWithText("input", "", `dateInput--${response.id}`)
                 dateInput.size = "45"
                 dateInput.value = response.targetDate
+                dateInput.classList = "dateInput"
                 divContainer.appendChild(dateInput)
 
                 editInput.addEventListener("keyup", (event) => {
@@ -76,6 +78,7 @@ export default {
     },
     //function runs when you hit enter to save you edit changes, then repost all the tasks to the dom
     handleSaveEdit() {
+        let data = sessionStorage.getItem("userID")
         let divContainer = event.target.parentNode
         let divId = divContainer.id.split("--")
         let editInputValue = document.querySelector(`#editInput--${divId[1]}`).value
