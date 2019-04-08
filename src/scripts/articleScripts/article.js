@@ -7,35 +7,31 @@ import articleHandler from "../articleScripts/articleEventHanlder"
 // fragment
 
 const articleSection = {
-    buildArticleWithObj: function() {
+    buildArticleWithObj: function (articleArray) {
         // building out thr object returned from the fetch call
         let fragment = document.createDocumentFragment()
-        let activeUser = sessionStorage.getItem("userID")
-        apiCall.getArticles(activeUser).then(parsedArray => {
-            console.log(parsedArray)
-            parsedArray.forEach(obj => {
-                const objectTitle = HTMLFactory.createElementWithText("p", `${obj.title}`, "objectTitle")
-                const objectSynopsis = HTMLFactory.createElementWithText("p", `${obj.synopsis}`, "objectSynopsis")
-                const objectUrl = HTMLFactory.createElementWithText("p", `${obj.url}`, "objectUrl")
+        const userID = sessionStorage.getItem("userID")
+        articleArray.forEach(obj => {
+            const objectTitle = HTMLFactory.createElementWithText("p", `${obj.title}`, "objectTitle")
+            const objectSynopsis = HTMLFactory.createElementWithText("p", `${obj.synopsis}`, "objectSynopsis")
+            const objectUrl = HTMLFactory.createElementWithText("p", `${obj.url}`, "objectUrl")
+            fragment.appendChild(objectTitle)
+            fragment.appendChild(objectSynopsis)
+            fragment.appendChild(objectUrl)
+            if(obj.userId === Number(userID)) {
                 const articleEdit = HTMLFactory.createElementWithText("button", "Edit Article", `articleEdit--${obj.id}`)
                 articleEdit.addEventListener("click", articleHandler.handleEdit)
                 const articleDelete = HTMLFactory.createElementWithText("button", "Delete Article", `articleDelete--${obj.id}`)
                 articleDelete.addEventListener("click", articleHandler.handeDelete)
-                fragment.appendChild(objectTitle)
-                fragment.appendChild(objectSynopsis)
-                fragment.appendChild(objectUrl)
                 fragment.appendChild(articleEdit)
                 fragment.appendChild(articleDelete)
-                //  buildArticle(fragment)
-            });
-        }).then(e => {
-            let articleDom = document.getElementById("articles-section")
-            articleDom.appendChild(fragment)
+            }
         })
+                let articleDom = document.getElementById("articles-section")
+                articleDom.appendChild(fragment)
     },
     buildArticle: function () {
-        // creating html
-        
+        // creating html template
         const articleFragment = document.createDocumentFragment();
         const articleCard = HTMLFactory.createElementWithText("div", undefined, "articleCard");
         const articleTitle = HTMLFactory.createElementWithText("h1", "Articles", "articleTitle");
@@ -46,7 +42,7 @@ const articleSection = {
         articleCard.appendChild(createArticleButton)
 
         createArticleButton.setAttribute("type", "button")
-        createArticleButton.addEventListener("click", function(){
+        createArticleButton.addEventListener("click", function () {
             HTMLFactory.clearContainer(articleCard)
             articleCard.appendChild(articleSection.newArticleForm())
         })
@@ -54,15 +50,17 @@ const articleSection = {
         return articleFragment;
 
     },
-    listArticles: function() {
+    listArticles: function (articleArray) {
         const divContainer = document.querySelector("#articles-section")
-        divContainer.appendChild(articleSection.buildArticle())
-        articleSection.buildArticle()
-        articleSection.buildArticleWithObj()
+        if (!divContainer.firstChild) {
+            divContainer.appendChild(articleSection.buildArticle())
+            articleSection.buildArticleWithObj(articleArray)
+        } else {
+            articleSection.buildArticleWithObj(articleArray)
+        }
     },
     newArticleForm: () => {
         let newArticleFragment = document.createDocumentFragment()
-        
         const articleTitleLabel = HTMLFactory.createElementWithText("label", "Title: ", "articleTitleLabel");
         const articleTitleInput = HTMLFactory.createElementWithText("input", undefined, "articleTitleInput");
         const articleSynopsisLabel = HTMLFactory.createElementWithText("label", "Synopsis: ", "articleSynopsisLabel");
@@ -80,16 +78,16 @@ const articleSection = {
         newArticleFragment.appendChild(submitButton)
         return newArticleFragment
     },
-createNewArticleObj: (title, synopsis, url, activeUser ) => {
-    return {
-        title: title,
-        synopsis: synopsis,
-        url: url,
-        userId: activeUser,
-        timeStamp: new Date()
+    createNewArticleObj: (title, synopsis, url, activeUser) => {
+        return {
+            title: title,
+            synopsis: synopsis,
+            url: url,
+            userId: activeUser,
+            timeStamp: new Date()
 
-    }
-},
+        }
+    },
     articleEditForm: (articleObject) => {
         let editFormFragment = document.createDocumentFragment()
 
