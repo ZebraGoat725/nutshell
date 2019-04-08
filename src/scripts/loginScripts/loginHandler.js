@@ -73,8 +73,12 @@ const loginHandler = {
             }
         })).then(() => {
             if(matches.length === 0){
-            API.postCreateUser(createNewUserObj(newNameInput.value, newEmailInput.value));
-            HTMLFactory.clearContainer(section);
+            API.postCreateUser(createNewUserObj(newNameInput.value, newEmailInput.value)).then((entry) => {
+                return sessionStorage.setItem("userID", entry.id)
+            }).then(() => {
+                HTMLFactory.clearContainer(section);
+                loadPage.load();
+            })
         }
         })
     }
