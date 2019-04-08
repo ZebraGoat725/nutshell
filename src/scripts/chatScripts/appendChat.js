@@ -27,8 +27,8 @@ const messenger = {
             // console.log(msgObj)
             // I want to go throught the array of objs and parse the info
             const chatBlock = buildChat.buildChatElements("div", "msg-block", `msg-block--${msgObj.id}`, undefined);
-            const message = buildChat.buildChatElements("p", "card-text",`msg-number--${msgObj.id}`, `${msgObj.message}`);
-            const user = buildChat.buildChatElements("p" ,undefined, `user-msgId--${msgObj.user.id}`,`${msgObj.user.userName}`)
+            const message = buildChat.buildChatElements("p", "card-text msg--text",`msg-number--${msgObj.id}`, `${msgObj.message}`);
+            const user = buildChat.buildChatElements("p" ,"user--name", `user-msgId--${msgObj.user.id}`,`${msgObj.user.userName}`)
             user.addEventListener("click", chatHandle.handleAddFriend);
             chatBlock.appendChild(message);
             chatBlock.appendChild(user);

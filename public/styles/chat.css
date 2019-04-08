@@ -1,9 +1,26 @@
 .msg-block {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 #chat--room, #input--msg{
     display: flex;
     justify-content: center
+}
+#chat--room {
+    font-size: -webkit-xxx-large;
+}
+.msg--text {
+    border: teal 2px solid;
+    border-radius: 20%;
+    background-color: lightblue;
+}
+
+#main--msgs {
+    padding: 20px;
+}
+
+.user--name {
+    background-color: lightgray;
+    border-radius: 15%;
 }
