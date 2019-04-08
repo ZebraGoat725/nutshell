@@ -9,12 +9,12 @@ import htmlFactory from "../HTMLFactory"
 import taskHandler from "./taskHandler"
 //handleNewTask
 
-let data = sessionStorage.getItem("userID")
 // console.log(data)
 
 export default {
     createTask() {
         //build elements 
+        let data = sessionStorage.getItem("userID")
         let taskFragment = document.createDocumentFragment()
         let mainDiv = htmlFactory.createElementWithText("div")
         let taskHeader = htmlFactory.createElementWithText("h1", "Your Tasks")
