@@ -8,14 +8,24 @@ const appendFriendsSection = {
     // Function to get all user and friend information and then append that to the DOM
     appendSection() {
         let userID = sessionStorage.getItem("userID");
-        return API.getResource("users", userID).then(user => {
-                friendsContainer.appendChild(buildFriendsSection.createTopDiv(user.userName, user.email, user.image))
+        const sideNav = document.createElement("nav");
+        sideNav.classList = "sidenav";
+        friendsContainer.appendChild(sideNav);
+        return API.getResource("users", userID)
+            .then(user => {
+                return sideNav.appendChild(buildFriendsSection.createTopDiv(user.userName, user.email, user.image))
             })
-            .then(apiFriends.getFriends(userID).then(friends => {
-                friends.forEach(friend => {
-                    friendsContainer.appendChild(buildFriendsSection.createFriendDiv(friend.user.userName, friend.user.email, friend.user.image, friend.id))
-                })
-            }))
+            .then(() => {
+                return apiFriends.getFriends(userID)
+                    .then(friends => {
+                        friends.forEach(friend => {
+                            return sideNav.appendChild(buildFriendsSection.createFriendDiv(friend.user.userName, friend.user.email, friend.user.image, friend.id))
+                        })
+                    })
+            })
+            .then(() => {
+                sideNav.appendChild(buildFriendsSection.createSaveFriendDiv())
+            })
     }
 };
 

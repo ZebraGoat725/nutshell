@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import HTMLFactory from "./HTMLFactory";
 import registerForm from "./loginScripts/registerForm";
 import loginHandler from "./loginScripts/loginHandler"
@@ -11,3 +12,9 @@ const articleContainer = document.querySelector("#articles-section")
 
 container.appendChild(loginForm.createLoginForm())
 // articleContainer.appendChild(articleSection.buildArticle())
+=======
+import loginForm from "./loginScripts/loginForm"
+
+const container = document.querySelector("#login-section");
+container.appendChild(loginForm.createLoginForm());
+>>>>>>> master
