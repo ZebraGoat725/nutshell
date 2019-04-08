@@ -50,7 +50,11 @@ const editEventForm = {
         cancelEditButton.classList.add("btn-sm");
         cancelEditButton.addEventListener("click", function () {
             HTMLFactory.clearContainer(eventSection);
-            eventsData.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
+            eventsData.getEvents(userID).then(response => eventHTML.listEventsToDom(response)).then(() => {
+                return eventsData.getFriendEvents(userID)
+            }).then(response => response.forEach(user => {
+                return eventsData.getEvents(user).then(response => eventHTML.listEventsToDom(response))
+            }));
         })
         return editEventCard;
     }
