@@ -3,6 +3,7 @@ import HTMLFactory from "./../HTMLFactory"
 import apiFriends from "./apiManagerFriends"
 import API from "../apiManager"
 import buildFriendsSection from "./buildFriendsSection"
+import loadPage from "./../loginScripts/loadPage"
 
 const friendsContainer = document.querySelector("#friends-section");
 
@@ -12,14 +13,12 @@ const friendEventHandler = {
         HTMLFactory.clearContainer(friendsContainer);
         appendFriendsSection.appendSection();
     },
-    // Function to delete friend connection from API and append updated list of friends to DOM
+    // Function to delete friend connection from API and reload the entire page
     deleteFriend() {
         let friendID = event.target.id.split("--");
         return apiFriends.deleteFriend(friendID[1])
             .then(() => {
-                HTMLFactory.clearContainer(friendsContainer);
-            }).then(() => {
-                friendEventHandler.handleAppendFriend();
+                loadPage.load()
             })
     },
     // Function to add input field for user to add new friend
