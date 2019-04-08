@@ -1,0 +1,9 @@
+.msg-block {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#chat--room, #input--msg{
+    display: flex;
+    justify-content: center
+}
