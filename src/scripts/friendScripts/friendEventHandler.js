@@ -24,13 +24,19 @@ const friendEventHandler = {
     },
     // Function to add input field for user to add new friend
     addFriend() {
-        HTMLFactory.clearContainer(event.target.parentNode)
+        let saveFriendContainer = document.querySelector("#save-friend-div");
+        HTMLFactory.clearContainer(saveFriendContainer)
+        let saveFriendFooterDiv = HTMLFactory.createElementWithText("div");
+        saveFriendFooterDiv.classList = "card-footer";
         let addFriendInput = HTMLFactory.createElementWithText("input", "YES", "add-friend-input")
         addFriendInput.placeholder = "Who would you like to friend?";
-        friendsContainer.appendChild(addFriendInput);
+        saveFriendFooterDiv.appendChild(addFriendInput);
         let saveFriendButton = HTMLFactory.createElementWithText("button", "Add friend");
-        saveFriendButton.addEventListener("click", friendEventHandler.saveFriend);
-        friendsContainer.appendChild(saveFriendButton);
+        saveFriendButton.classList = "btn btn-primary";
+        saveFriendButton.addEventListener("click", friendEventHandler.saveFriend)
+        saveFriendFooterDiv.appendChild(saveFriendButton);
+        saveFriendContainer.appendChild(saveFriendFooterDiv);
+        return saveFriendContainer;
     },
     // Function to POST new friend connection to friends resource
     saveFriend() {

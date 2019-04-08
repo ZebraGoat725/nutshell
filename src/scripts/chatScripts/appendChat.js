@@ -61,7 +61,7 @@ const messenger = {
         buttonGroup.setAttribute("aria-label", "Edit/Delete")
         buttonGroup.id = `msg--${lastestMsg.id}`
         
-        const editButton = buildChat.buildChatElements("button","btn btn-primary",`edit-userMsg--${lastestMsg.id}`,"Edit");
+        const editButton = buildChat.buildChatElements("button","btn btn-info",`edit-userMsg--${lastestMsg.id}`,"Edit");
         editButton.addEventListener("click",chatHandle.handlerEditChatButton);
         const deleteButton = buildChat.buildChatElements("button","btn btn-danger",`delete-userMsg--${lastestMsg.id}`,"Delete")
         deleteButton.addEventListener("click", chatHandle.handlerDeleteChatButton);

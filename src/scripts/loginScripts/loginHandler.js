@@ -20,7 +20,8 @@ const loginHandler = {
         API.getUsers().then(users => {
             users.forEach(user => {
                 if (userName === user.userName.toLowerCase() && userEmail === user.email.toLowerCase()) {
-                    sessionStorage.setItem("userID", user.id)
+                    sessionStorage.setItem("userID", user.id);
+                    sessionStorage.setItem("userName", user.userName);
                 }
             })
         }).then(() => {
@@ -45,8 +46,13 @@ const loginHandler = {
         const section = document.querySelector("#login-section");
         const newNameInput = document.querySelector("#registerName-input").value;
         const newEmailInput = document.querySelector("#registerEmail-input").value;
-        API.postCreateUser(createNewUserObj(newNameInput, newEmailInput));
+        API.postCreateUser(createNewUserObj(newNameInput, newEmailInput))
+        .then(entry => {
+            sessionStorage.setItem("userID", entry.id)
+        })
         HTMLFactory.clearContainer(section);
+        loadPage.load()
+        
     }
 };
 

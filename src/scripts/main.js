@@ -1,4 +1,4 @@
-import loginForm from "./loginScripts/loginForm";
+import loginForm from "./loginScripts/loginForm"
 
-const container = document.querySelector("#login-section")
-container.appendChild(loginForm.createLoginForm())
+const container = document.querySelector("#login-section");
+container.appendChild(loginForm.createLoginForm());
