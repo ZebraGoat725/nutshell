@@ -4,6 +4,7 @@ import HTMLfactory from "../HTMLFactory"
 import chatMsg from "./appendChat"
 import chatBuild from "./chatForm"
 import friends from "./friends"
+import friendships from "./../friendScripts/appendFriendsSection"
 
 // this is a factory functions that will create the objs that will create the messages and
 // and the friendships respectively to be posted in the db
@@ -121,7 +122,11 @@ const chatHandlers = {
                         // if true add the user as a friend
                         console.log("confirm works")
                         let newFriend = createNewFriend(userId, potentialFriend)
-                        chatApi.postCreateFriendship(newFriend);
+                        chatApi.postCreateFriendship(newFriend)
+                        .then(() => {
+                            // once we post a friendship, refresh the friend's container
+                            friendships.appendSection()
+                        });
                     }
                 }else{
                     alert("You guys are already pals!")
