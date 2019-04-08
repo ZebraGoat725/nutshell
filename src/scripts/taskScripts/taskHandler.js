@@ -82,7 +82,7 @@ export default {
         let dateInputValue = document.querySelector(`#dateInput--${divId[1]}`).value
 
         let editObject = {
-            userId: data,
+            userId: Number(data),
             taskName: editInputValue,
             targetDate: dateInputValue,
             isComplete: false
