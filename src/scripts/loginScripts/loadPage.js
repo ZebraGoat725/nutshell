@@ -34,9 +34,11 @@ const loadPage = {
         })).then(() => apiCall.getArticles(userID)).then(r =>{
             return articleSection.listArticles(r)
         }).then(() => apiCall.getFriendArticles(userID)).then(r =>{
-            return apiCall.getArticles(r)
-        }).then(r => {
+            r.forEach(article => {
+                apiCall.getArticles(article).then(r => {
             articleSection.listArticles(r)
+        })
+            });
         })
     }
 }
