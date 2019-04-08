@@ -25,6 +25,7 @@ const createEventForm = {
         const newEventDateLabel = newDateDiv.appendChild(HTMLFactory.createElementWithText("label", "Event Date:"));
         const newEventDateInput = newDateDiv.appendChild(HTMLFactory.createElementWithText("input", undefined, "createEvent-dateInput"));
         newEventDateInput.classList.add("form-control");
+        newEventDateInput.setAttribute("type", "date");
         const newLocationDiv = newEventForm.appendChild(HTMLFactory.createElementWithText("div"))
         newLocationDiv.classList.add("form-group");
         const newEventLocationLabel = newLocationDiv.appendChild(HTMLFactory.createElementWithText("label", "Event Location:"));
@@ -45,7 +46,11 @@ const createEventForm = {
         cancelEventButton.type = "button";
         cancelEventButton.addEventListener("click", function(){
             HTMLFactory.clearContainer(eventSection);
-            eventsData.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
+            eventsData.getEvents(userID).then(response => eventHTML.listEventsToDom(response)).then(() => {
+                return eventsData.getFriendEvents(userID)
+            }).then(response => response.forEach(user => {
+                return eventsData.getEvents(user).then(response => eventHTML.listEventsToDom(response))
+            }));
         })
 
         return newEventCard;
