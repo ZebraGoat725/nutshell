@@ -29,7 +29,8 @@ const loginHandler = {
         API.getUsers().then(users => {
             users.forEach(user => {
                 if (userName === user.userName.toLowerCase() && userEmail === user.email.toLowerCase()) {
-                    sessionStorage.setItem("userID", user.id)
+                    sessionStorage.setItem("userID", user.id);
+                    sessionStorage.setItem("userName", user.userName);
                 }
             })
         }).then(() => {

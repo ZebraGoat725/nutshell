@@ -15,6 +15,15 @@ const HTMLFactory = {
         while (elementToClear.firstChild) {
             elementToClear.removeChild(elementToClear.firstChild);
         }
+    },
+    // Function to build and return list element with anchor and href
+    createLiEl(text) {
+        const newLiElement = document.createElement("li");
+        const newAnchor = document.createElement("a");
+        newAnchor.setAttribute("href", "#");
+        newAnchor.textContent = text;
+        newLiElement.appendChild(newAnchor);
+        return newLiElement
     }
 };
 
