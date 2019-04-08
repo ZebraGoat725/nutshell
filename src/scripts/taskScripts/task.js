@@ -31,8 +31,8 @@ export default {
                     if (entry.isComplete === false) {
                         let innerDiv = htmlFactory.createElementWithText("div", "", `innerDiv--${entry.id}`)
                         let taskListItem = htmlFactory.createElementWithText("li", `${entry.taskName}`)
-                        let dateSpan = htmlFactory.createElementWithText("li", entry.targetDate, `taskDate--${entry.id}`)
-                        let checkBoxSpan = htmlFactory.createElementWithText("span", "Done")
+                        let dateSpan = htmlFactory.createElementWithText("p", entry.targetDate, `taskDate--${entry.id}`)
+                        let checkBoxSpan = htmlFactory.createElementWithText("p", "Done")
                         let checkBox = htmlFactory.createElementWithText("input", "", `checkBox--${entry.id}`)
                         checkBox.type = "checkbox"
                         checkBox.value = entry.isComplete
