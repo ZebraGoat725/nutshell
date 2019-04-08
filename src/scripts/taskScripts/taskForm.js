@@ -15,10 +15,10 @@ export default {
 
         let newTaskSpan = htmlFactory.createElementWithText("span", "", "newTaskSpan")
 
-        let taskLabel = htmlFactory.createElementWithText("label", "New Task")
+        let taskLabel = htmlFactory.createElementWithText("label", "New Task: ")
         let taskInput = htmlFactory.createElementWithText("input", "", "taskInput")
 
-        let dateLabel = htmlFactory.createElementWithText("label", "New Task")
+        let dateLabel = htmlFactory.createElementWithText("label", "Target Date: ")
         let dateInput = htmlFactory.createElementWithText("input","", "dateInput")
         dateInput.type = "date"
 
