@@ -82,25 +82,21 @@ const chatHandlers = {
     },
     handleSaveButton: () => {
         // handle saving the updated chat message
-        // console.log(event.target.parentNode.id)// gives the msgId, I have the user already
         const msgBlockId = event.target.parentNode.id.split("--")[1];
         let userId = Number(sessionStorage.getItem("userID"));
         const theMessage = document.querySelector(`#msg-update--${msgBlockId}`)
-        // console.log(theMessage.value)
         let updatedMessageObj = createNewMsg(userId, theMessage.value)
-        // console.log(updatedMessageObj)
+
         chatApi.putMessage(updatedMessageObj, msgBlockId).then(()=>{
             const msgContainer = document.querySelector("#messages-section");
             HTMLfactory.clearContainer(msgContainer)
             chatApi.getMessages().then(msgArray => {
-                // console.log("update done")
                 chatMsg.buildMainMsg(msgArray);
             })
         })
     },
     handleAddFriend: () => {
         // handle adding a friend when the user clicks on a person's name in the chat
-        // console.log(event.target.id.split("--")[1])
         const potentialFriend = Number(event.target.id.split("--")[1]);
         let userId = Number(sessionStorage.getItem("userID"));
 
@@ -115,7 +111,7 @@ const chatHandlers = {
                 const notYourFriend = friendsArray.find(yourFriend => {
                     return yourFriend === potentialFriend
                 })
-                // console.log(notYourFriend)
+                // if this not your friend you will get an undefined
                 if(notYourFriend === undefined){
                     // console.log("the values is undefined")
                     let returnValue = confirm("Are you sure you want to add as a friend?")
@@ -126,7 +122,8 @@ const chatHandlers = {
                         chatApi.postCreateFriendship(newFriend)
                         .then(() => {
                             // once we post a friendship, refresh the friend's container
-                            friendships.handleAppendFriend()
+                            // friendships.handleAppendFriend()
+                            load.load()
                         });
                     }
                 }else{
@@ -137,31 +134,3 @@ const chatHandlers = {
     }
 }
 export default chatHandlers
-/*
-                if(msgObj.user.id !== userId){
-                    console.log("not me, another user")
-                    // and if they ids don't match, it means it's a different user
-                    // also this will check verification to see if they are already friends with them
-                    let friendsArray = friends.returnFriendsArray()
-                    console.log("The friends array:",friendsArray)
-                
-                    friendsArray.forEach(friend => {
-                        //go thru the loop of found friends of current user and if
-                        // if no match,alert user to add friend
-                        console.log(friend)
-                        // this will check to see if the current user(userId) is the same as the msg's user
-                        if(msgObj.user.id === friend){
-                            alert("this is your friend")
-                            console.log("a friend of yours")
-                        }else if(msgObj.user.id !== friend){
-                            let returnValue = confirm("Are you sure you want to add as a friend?")
-                            if(returnValue){
-                                // if true add the user as a friend
-                                console.log("confirm works")
-                                let newFriend = createNewFriend(userId, msgObj.user.id)
-                                api.postCreateFriendship(newFriend);
-                            }
-                        }
-                    })
-                }
-*/
