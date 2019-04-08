@@ -1,7 +1,8 @@
 import friendEventHandler from "./../friendScripts/friendEventHandler"
 import task from "../taskScripts/task"
 import eventsData from "../eventScripts/eventsDataManager"
-import eventHTML from "../eventScripts/eventHTML";
+import eventHTML from "../eventScripts/eventHTML"
+import buildNavbar from "./../buildNavbar"
 import friendChatApi from "./../chatScripts/chatApiManager"
 import parseFriends from "./../chatScripts/friends"
 import chatMsg from "./../chatScripts/appendChat"
@@ -15,6 +16,9 @@ const loadPage = {
 
         // Calling function to build friend section of DOM
         friendEventHandler.handleAppendFriend()
+
+        // Calling function to build navbar
+        buildNavbar.buildList();
 
         let taskContainer = document.querySelector("#tasks-section")
         taskContainer.appendChild(task.createTask())
