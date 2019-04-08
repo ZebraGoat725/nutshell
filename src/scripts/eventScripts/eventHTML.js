@@ -7,11 +7,13 @@ const eventHTML = {
     buildEventCard: () => {
         const eventCard = HTMLFactory.createElementWithText("div", undefined, "eventCard-card");
         eventCard.classList.add("card");
+        eventCard.classList.add("bg-light")
+        eventCard.classList.add("text-dark");
         const cardHeader = eventCard.appendChild(HTMLFactory.createElementWithText("h3", "Events", "eventCard-header"))
         cardHeader.classList.add("card-header")
         const cardBody = eventCard.appendChild(HTMLFactory.createElementWithText("div", undefined, "eventCard-body"));
         cardBody.classList.add("card-body");
-
+        // cardBody.classList.add("bg-light");
         return eventCard;
     },
     // htmlforEachEvent takes the event object and creates the html structure for it
@@ -20,6 +22,7 @@ const eventHTML = {
         const cardBody = document.querySelector("#eventCard-body");
         const userID = sessionStorage.getItem("userID");
         const eachEventContainer = cardBody.appendChild(HTMLFactory.createElementWithText("div", undefined, `event--${eventObj.id}`));
+        
         const eventName = eachEventContainer.appendChild(HTMLFactory.createElementWithText("h3", eventObj.eventName, `eventCard-name--${eventObj.id}`));
         eventName.classList.add("card-text");
         const eventDate = eachEventContainer.appendChild(HTMLFactory.createElementWithText("p", eventObj.eventDate, `eventCard-date--${eventObj.id}`));
@@ -30,6 +33,7 @@ const eventHTML = {
             eachEventContainer.classList.add("myEvent");
             const eventButtonGroup = eachEventContainer.appendChild(HTMLFactory.createElementWithText("div", undefined, `eventCard-buttonGroup--${eventObj.id}`));
             eventButtonGroup.classList.add("btn-group");
+            eventButtonGroup.classList.add("mb-3");
             const eventEditButton = eventButtonGroup.appendChild(HTMLFactory.createElementWithText("button", "Edit Event", `eventCard-editButton--${eventObj.id}`));
             eventEditButton.classList.add("btn");
             eventEditButton.classList.add("btn-sm");
@@ -49,6 +53,10 @@ const eventHTML = {
         eventDeleteButton.addEventListener("click", handlersForEvents.deleteEvent);
         } else if (eventObj.userId !== Number(userID)) {
             eachEventContainer.classList.add("friendEvent");
+            cardBody.classList.add("card-body");
+            eventName.setAttribute("style", "font-style: italic");
+            eventDate.setAttribute("style", "font-style: italic");
+            eventLocation.setAttribute("style", "font-style: italic");
         }
     },
     // listEventsToDom takes the array of events and calls the htmlForEachEvent function for each event, and appends each one to the DOM.
@@ -75,8 +83,8 @@ const eventHTML = {
             })
             return eventCardBody;
         }
-        
     }
 }
+
 
 export default eventHTML;

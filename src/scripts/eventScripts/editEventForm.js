@@ -25,6 +25,7 @@ const editEventForm = {
         const editEventDateLabel = editDateDiv.appendChild(HTMLFactory.createElementWithText("label", "Event Date:"));
         const editEventDateInput = editDateDiv.appendChild(HTMLFactory.createElementWithText("input", undefined, "editEvent-dateInput"));
         editEventDateInput.classList.add("form-control");
+        editEventDateInput.setAttribute("type", "date");
         editEventDateInput.value = date;
         const editLocationDiv = editEventForm.appendChild(HTMLFactory.createElementWithText("div"))
         editLocationDiv.classList.add("form-group");
@@ -39,7 +40,7 @@ const editEventForm = {
         submitEditButton.classList.add("btn-info");
         submitEditButton.classList.add("btn-sm");
         submitEditButton.type = "button";
-        submitEditButton.addEventListener("click", function(){
+        submitEditButton.addEventListener("click", function () {
             handlersForEvents.submitEditEvent(id);
         })
         const cancelEditButton = buttonGroup.appendChild(HTMLFactory.createElementWithText("button", "Cancel", "editForm-cancelButton"));
@@ -47,7 +48,7 @@ const editEventForm = {
         cancelEditButton.classList.add("btn");
         cancelEditButton.classList.add("btn-danger");
         cancelEditButton.classList.add("btn-sm");
-        cancelEditButton.addEventListener("click", function(){
+        cancelEditButton.addEventListener("click", function () {
             HTMLFactory.clearContainer(eventSection);
             eventsData.getEvents(userID).then(response => eventHTML.listEventsToDom(response));
         })
