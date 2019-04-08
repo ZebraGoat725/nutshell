@@ -75,7 +75,9 @@ const loginHandler = {
         })).then(() => {
             if(matches.length === 0){
             API.postCreateUser(createNewUserObj(newNameInput.value, newEmailInput.value)).then((entry) => {
-                return sessionStorage.setItem("userID", entry.id)
+                sessionStorage.setItem("userID", entry.id)
+                sessionStorage.setItem("userName", entry.userName)
+                return sessionStorage
             }).then(() => {
                 HTMLFactory.clearContainer(section);
                 loadPage.load();
