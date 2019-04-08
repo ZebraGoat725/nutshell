@@ -26,23 +26,26 @@ const loginHandler = {
     login() {
         const userName = document.getElementById("userNameInput").value.toLowerCase();
         const userEmail = document.getElementById("emailInput").value.toLowerCase();
-        API.getUsers().then(users => {
-            users.forEach(user => {
-                if (userName === user.userName.toLowerCase() && userEmail === user.email.toLowerCase()) {
-                    sessionStorage.setItem("userID", user.id);
-                    sessionStorage.setItem("userName", user.userName);
-                }
+        // Checking to make sure user has entered a name and email
+        if (userName === "" || userEmail === "") {
+            alert("Please enter both username and email")
+        }
+        else {
+            API.getUsers().then(users => {
+                users.forEach(user => {
+                    if (userName === user.userName.toLowerCase() && userEmail === user.email.toLowerCase()) {
+                        sessionStorage.setItem("userID", user.id);
+                        sessionStorage.setItem("userName", user.userName);
+                    }
+                })
+            }).then(() => {
+                const section = document.querySelector("#login-section");
+                HTMLFactory.clearContainer(section)
+            }).then(() => {
+                // Calling function to build all sections of DOM
+                loadPage.load()
             })
-        }).then(() => {
-            // let userID = sessionStorage.getItem("userID");
-            const section = document.querySelector("#login-section");
-            HTMLFactory.clearContainer(section)
-        }).then(() => {
-            // Calling function to build all sections of DOM
-            loadPage.load()
-        })
-
-
+        }
     },
     // Function to handle user clicking register button. Function clears page, calls registerForm and appends to registerSection and then appends to body
     register() {
