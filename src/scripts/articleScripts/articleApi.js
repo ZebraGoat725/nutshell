@@ -29,7 +29,13 @@ const apiCall = {
             "content-type": "application/json"
         },
         body: JSON.stringify(updatedArticle)
-    })
+    }),
+    getFriendArticles: (userID) => {
+        return fetch(`${url}/friends?currentUserId=${userID}&_expand=user`).then(response => response.json()).then(response => {
+            let newArticleArray = response.map(users => users.user.id);
+            return newArticleArray
+        })
+    }
 }
 
 export default apiCall
