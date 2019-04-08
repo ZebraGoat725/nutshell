@@ -27,7 +27,7 @@ const loginHandler = {
         const section = document.querySelector("#login-section");
         const userName = document.getElementById("userNameInput").value.toLowerCase();
         const userEmail = document.getElementById("emailInput").value.toLowerCase();
-        let isMatch = true;
+        let isMatch = false;
         if(userName === "" || userEmail === ""){
             alert("You left an input field blank");
         } else{
@@ -38,15 +38,13 @@ const loginHandler = {
                     sessionStorage.setItem("userName", user.userName);
                     HTMLFactory.clearContainer(section);
                     loadPage.load()
-                    let isMatch = false;
-                    return isMatch
+                    return isMatch = false;
                 } else {
-                    let isMatch = true;
-                    return isMatch;
+                    return isMatch = true;
                 }
             })
         }).then(() => {
-            if(isMatch === false){
+            if(isMatch === true){
                 return alert("Username or Email is invalid")
             }
         })
