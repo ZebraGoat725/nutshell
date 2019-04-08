@@ -28,7 +28,7 @@ const chatHandlers = {
         // this is a function that will handle the save button, it will call the factory function above
         // called createNewMsg and return a newMsg then the handler will pass that to the chatApi post fetch call
         let userId = Number(sessionStorage.getItem("userID"));
-        console.log(userId)
+        // console.log(userId)
         const userMessage = document.querySelector("#user-message").value;
 
         let newMsg = createNewMsg(userId, userMessage) //calling the factory function
@@ -38,7 +38,7 @@ const chatHandlers = {
             HTMLfactory.clearContainer(msgContainer);
             //go and get new msgs to append on dom
             chatApi.getMessages().then(msgArray => {
-                console.log("helllllo")
+                // console.log("helllllo")
                 chatMsg.buildMainMsg(msgArray)
                 chatMsg.buildEditAndDelete(msgArray)
             })
@@ -46,10 +46,10 @@ const chatHandlers = {
     },
     handlerEditChatButton: () => {
         // make a put request
-        console.log(event.target.parentNode.id.split("--")[1])
+        // console.log(event.target.parentNode.id.split("--")[1])
         const parentId = event.target.parentNode.id.split("--")[1];
         const updateDiv = document.querySelector(`#msg-block--${parentId}`)
-        console.log(document.querySelector(`#msg-number--${parentId}`).textContent)
+        // console.log(document.querySelector(`#msg-number--${parentId}`).textContent)
         const valueToBeUpdated = document.querySelector(`#msg-number--${parentId}`).textContent;
         HTMLfactory.clearContainer(updateDiv);
     
@@ -67,13 +67,13 @@ const chatHandlers = {
     },
     handlerDeleteChatButton: () => {
         // make a delete request
-        console.log(event.target.parentNode.id.split("--")[1])
+        // console.log(event.target.parentNode.id.split("--")[1])
         const msgBlockId = event.target.parentNode.id.split("--")[1];
         chatApi.deleteMessage(msgBlockId).then(()=>{
             const msgContainer = document.querySelector("#messages-section");
             HTMLfactory.clearContainer(msgContainer)
             chatApi.getMessages().then(msgArray => {
-                console.log("delete done")
+                // console.log("delete done")
                 chatMsg.buildMainMsg(msgArray);
             })
         })
@@ -92,14 +92,14 @@ const chatHandlers = {
             const msgContainer = document.querySelector("#messages-section");
             HTMLfactory.clearContainer(msgContainer)
             chatApi.getMessages().then(msgArray => {
-                console.log("update done")
+                // console.log("update done")
                 chatMsg.buildMainMsg(msgArray);
             })
         })
     },
     handleAddFriend: () => {
         // handle adding a friend when the user clicks on a person's name in the chat
-        console.log(event.target.id.split("--")[1])
+        // console.log(event.target.id.split("--")[1])
         const potentialFriend = Number(event.target.id.split("--")[1]);
         let userId = Number(sessionStorage.getItem("userID"));
 
@@ -114,13 +114,13 @@ const chatHandlers = {
                 const notYourFriend = friendsArray.find(yourFriend => {
                     return yourFriend === potentialFriend
                 })
-                console.log(notYourFriend)
+                // console.log(notYourFriend)
                 if(notYourFriend === undefined){
-                    console.log("the values is undefined")
+                    // console.log("the values is undefined")
                     let returnValue = confirm("Are you sure you want to add as a friend?")
                     if(returnValue){
                         // if true add the user as a friend
-                        console.log("confirm works")
+                        // console.log("confirm works")
                         let newFriend = createNewFriend(userId, potentialFriend)
                         chatApi.postCreateFriendship(newFriend)
                         .then(() => {

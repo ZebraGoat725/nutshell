@@ -6,7 +6,6 @@ const parsed = {
     getFriendId: (parsedFriendsArray) => { //this function will parse through the friends and push them into
         // an array that will be pushed to another function
         parsedFriendsArray.forEach(friendObj => {
-            console.log("the friend's ID",friendObj.user.id)
             parsed.friendsIdArray.push(friendObj.user.id)
         });
     },
