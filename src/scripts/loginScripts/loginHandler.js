@@ -55,7 +55,7 @@ const loginHandler = {
         const section = document.querySelector("#login-section");
         const newNameInput = document.querySelector("#registerName-input");
         const newEmailInput = document.querySelector("#registerEmail-input");
-        let matches = [];
+        let isMatch = false;
         if(newNameInput.value === "") {
             return alert("You left the Username input blank");
         }else if(newEmailInput.value === "") {
@@ -64,16 +64,18 @@ const loginHandler = {
         API.getUsers().then(users => users.forEach(user => {
             if(newNameInput.value.toLowerCase() === user.userName.toLowerCase()){
                 alert("This username has been taken.")
-                return matches.push(user.userName)
-            }
-        }))
-        API.getUsers().then(users => users.forEach(user => {
-            if(newEmailInput.value.toLowerCase() === user.email.toLowerCase()){
-                alert("This email is already registered.")
-                return matches.push(user.email);
+                return isMatch = true;
             }
         })).then(() => {
-            if(matches.length === 0){
+            API.getUsers().then(users => users.forEach(user => {
+                if(newEmailInput.value.toLowerCase() === user.email.toLowerCase()){
+                    alert("This email is already registered.")
+                    return isMatch = true;
+                }
+            }))
+        })
+        .then(() => {
+            if(isMatch === false){
             API.postCreateUser(createNewUserObj(newNameInput.value, newEmailInput.value)).then((entry) => {
                 sessionStorage.setItem("userID", entry.id)
                 sessionStorage.setItem("userName", entry.userName)
