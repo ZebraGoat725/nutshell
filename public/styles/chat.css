@@ -12,8 +12,9 @@
 }
 .msg--text {
     border: teal 2px solid;
-    border-radius: 20%;
+    border-radius: 15px;
     background-color: lightblue;
+    padding: 0 5px 0 5px;
 }
 
 #main--msgs {
@@ -22,5 +23,6 @@
 
 .user--name {
     background-color: lightgray;
-    border-radius: 15%;
+    border-radius: 15px;
+    padding: 0 5px 0 5px;
 }
