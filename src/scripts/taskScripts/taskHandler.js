@@ -78,6 +78,7 @@ export default {
     },
     //function runs when you hit enter to save you edit changes, then repost all the tasks to the dom
     handleSaveEdit() {
+        let data = sessionStorage.getItem("userID")
         let divContainer = event.target.parentNode
         let divId = divContainer.id.split("--")
         let editInputValue = document.querySelector(`#editInput--${divId[1]}`).value
