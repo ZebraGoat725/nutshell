@@ -12,6 +12,16 @@ const apiFriends = {
         return fetch(`${url}/friends/${friendToDelete}`, {
             method: "DELETE"
         })
+    },
+    // Function to POST new friend connection
+    postFriend: (friendObj) => {
+        return fetch(`${url}/friends/`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(friendObj)
+        }).then(r => r.json())
     }
 }
 
