@@ -37,13 +37,13 @@ const buildChatMessage = {
     mainChatTextForm: function() {
         // this component will build the CURRENT user's actual message
         // it later will have the save button
-        const chatForm = buildChatMessage.buildChatElements("div", "chat-form", undefined, undefined);
+        const chatForm = buildChatMessage.buildChatElements("div", "input-group chat-form", "input--msg", undefined);
         const chatInput = buildChatMessage.buildChatElements("input", undefined, "user-message", undefined);
         chatInput.type = "text";
         chatInput.cols = 200;
         chatInput.placeholder = "Enter your message";
 
-        const chatSendButton = buildChatMessage.buildChatElements("button", "btn btn-primary", "chat--send", "Send");
+        const chatSendButton = buildChatMessage.buildChatElements("button", "btn btn-outline-primary", "chat--send", "Send");
         chatSendButton.addEventListener("click", chatHandle.handlerChatSendButton); // handle the save message
         chatForm.appendChild(chatInput);
         chatForm.appendChild(chatSendButton);
@@ -56,7 +56,7 @@ const buildChatMessage = {
         console.log(chat)
         const chatBootDomFragment = document.createDocumentFragment();
         const cardCenter = buildChatMessage.buildChatElements("div","card text-center");
-        const cardHeader = buildChatMessage.buildChatElements("div", "card-header",undefined, "Chat Room");
+        const cardHeader = buildChatMessage.buildChatElements("div", "card-header","chat--room", "Chat Room");
         const cardBlock = buildChatMessage.buildChatElements("div", "card-block", undefined, undefined);
         const cardFooter = buildChatMessage.buildChatElements("div","card-footer text-muted", undefined,undefined);
 
