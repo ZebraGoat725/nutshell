@@ -36,7 +36,6 @@ const API = {
 
 
 
-export default API;
 // http://localhost:8088/tasks?userId=1
 export default API;
 
