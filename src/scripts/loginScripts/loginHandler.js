@@ -26,23 +26,26 @@ const loginHandler = {
     login() {
         const userName = document.getElementById("userNameInput").value.toLowerCase();
         const userEmail = document.getElementById("emailInput").value.toLowerCase();
-        API.getUsers().then(users => {
-            users.forEach(user => {
-                if (userName === user.userName.toLowerCase() && userEmail === user.email.toLowerCase()) {
-                    sessionStorage.setItem("userID", user.id);
-                    sessionStorage.setItem("userName", user.userName);
-                }
+        // Checking to make sure user has entered a name and email
+        if (userName === "" || userEmail === "") {
+            alert("Please enter both username and email")
+        }
+        else {
+            API.getUsers().then(users => {
+                users.forEach(user => {
+                    if (userName === user.userName.toLowerCase() && userEmail === user.email.toLowerCase()) {
+                        sessionStorage.setItem("userID", user.id);
+                        sessionStorage.setItem("userName", user.userName);
+                    }
+                })
+            }).then(() => {
+                const section = document.querySelector("#login-section");
+                HTMLFactory.clearContainer(section)
+            }).then(() => {
+                // Calling function to build all sections of DOM
+                loadPage.load()
             })
-        }).then(() => {
-            // let userID = sessionStorage.getItem("userID");
-            const section = document.querySelector("#login-section");
-            HTMLFactory.clearContainer(section)
-        }).then(() => {
-            // Calling function to build all sections of DOM
-            loadPage.load()
-        })
-
-
+        }
     },
     // Function to handle user clicking register button. Function clears page, calls registerForm and appends to registerSection and then appends to body
     register() {
@@ -55,7 +58,8 @@ const loginHandler = {
         const section = document.querySelector("#login-section");
         const newNameInput = document.querySelector("#registerName-input");
         const newEmailInput = document.querySelector("#registerEmail-input");
-        let isMatch = false;
+        let isUserNameMatch = false;
+        let isEmailMatch = false;
         if(newNameInput.value === "") {
             return alert("You left the Username input blank");
         }else if(newEmailInput.value === "") {
@@ -64,22 +68,21 @@ const loginHandler = {
         API.getUsers().then(users => users.forEach(user => {
             if(newNameInput.value.toLowerCase() === user.userName.toLowerCase()){
                 alert("This username has been taken.")
-                return isMatch = true;
+                return isUserNameMatch = true;
             }
-        })).then(() => {
-            API.getUsers().then(users => users.forEach(user => {
+        })).then(() => API.getUsers())
+            .then(users => users.forEach(user => {
                 if(newEmailInput.value.toLowerCase() === user.email.toLowerCase()){
                     alert("This email is already registered.")
-                    return isMatch = true;
+                    return isEmailMatch = true;
                 }
             }))
-        })
         .then(() => {
-            if(isMatch === false){
+            if(isUserNameMatch === false && isEmailMatch === false){
             API.postCreateUser(createNewUserObj(newNameInput.value, newEmailInput.value)).then((entry) => {
                 sessionStorage.setItem("userID", entry.id)
                 sessionStorage.setItem("userName", entry.userName)
-                return sessionStorage
+                //return sessionStorage
             }).then(() => {
                 HTMLFactory.clearContainer(section);
                 loadPage.load();
