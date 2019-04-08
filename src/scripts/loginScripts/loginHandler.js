@@ -39,7 +39,7 @@ const loginHandler = {
                     HTMLFactory.clearContainer(section);
                     loadPage.load()
                     return isMatch = false;
-                } else {
+                } else if(userName === user.userName.toLowerCase() || userEmail === user.email.toLowerCase()) {
                     return isMatch = true;
                 }
             })
