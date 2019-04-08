@@ -12,14 +12,33 @@ const articleHandler = {
         const divContainer = document.querySelector("#articles-section")
         HTMLFactory.clearContainer(divContainer)
         apiCall.postArticle(articleSection.createNewArticleObj(title, synopsis, url, activeUser))
-        .then(() => articleSection.buildArticleWithObj())
+        .then(() => apiCall.getArticles(activeUser)).then(r =>{
+            return articleSection.listArticles(r)
+        }).then(() => apiCall.getFriendArticles(activeUser)).then(r =>{
+            r.forEach(article => {
+                apiCall.getArticles(article).then(r => {
+            articleSection.listArticles(r)
+        })
+            });
+        })
     },
     handeDelete: () => {
         console.log("clicked")
         let articleId = event.target.id
+        const divContainer = document.querySelector("#articles-section")
         const hi = articleId.split("--")[1];
+        let activeUser = Number(sessionStorage.getItem("userID"))
         console.log(articleId)
-        apiCall.deleteArticle(hi).then(articleSection.buildArticleWithObj());
+        HTMLFactory.clearContainer(divContainer)
+        apiCall.deleteArticle(hi).then(() => apiCall.getArticles(activeUser)).then(r =>{
+            return articleSection.listArticles(r)
+        }).then(() => apiCall.getFriendArticles(activeUser)).then(r =>{
+            r.forEach(article => {
+                apiCall.getArticles(article).then(r => {
+            articleSection.listArticles(r)
+        })
+            });
+        })
     },
     handleEdit: () => {
         console.log("clicked edit")
@@ -35,7 +54,8 @@ const articleHandler = {
     handleUpdate: (event) => {
         const updateTarget = event.target.previousSibling.id
         const hello= updateTarget.split("--")[1]
-        console.log(hello)
+        let activeUser = Number(sessionStorage.getItem("userID"))
+        const divContainer = document.querySelector("#articles-section")
         const titleValue = document.querySelector(`#edit-article-title--${hello}`).value
         const synopsisValue = document.querySelector(`#edit-article-synopsis--${hello}`).value
         const urlValue = document.querySelector(`#edit-article-url--${hello}`).value
@@ -44,7 +64,16 @@ const articleHandler = {
             synopsis: synopsisValue,
             url: urlValue
         }
-        apiCall.patchArticle(hello, patchObject).then(articleSection.buildArticleWithObj())
+        HTMLFactory.clearContainer(divContainer)
+        apiCall.patchArticle(hello, patchObject).then(() => apiCall.getArticles(activeUser)).then(r =>{
+            return articleSection.listArticles(r)
+        }).then(() => apiCall.getFriendArticles(activeUser)).then(r =>{
+            r.forEach(article => {
+                apiCall.getArticles(article).then(r => {
+            articleSection.listArticles(r)
+        })
+            });
+        })
     }
 }
 export default articleHandler

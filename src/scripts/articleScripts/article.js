@@ -8,10 +8,10 @@ import articleHandler from "../articleScripts/articleEventHanlder"
 
 const articleSection = {
     buildArticleWithObj: function (articleArray) {
-        // building out thr object returned from the fetch call
+        // building out the object returned from the fetch call
         let fragment = document.createDocumentFragment()
-        let articleBody = document.querySelector("#articleBody")
         const userID = sessionStorage.getItem("userID")
+        let articleBody = document.querySelector("#articleBody")
         articleArray.forEach(obj => {
             const eachArticleConatainer = HTMLFactory.createElementWithText("div")
             const objectTitle = HTMLFactory.createElementWithText("p", `${obj.title}`, "objectTitle")
@@ -20,8 +20,7 @@ const articleSection = {
             eachArticleConatainer.appendChild(objectTitle)
             eachArticleConatainer.appendChild(objectSynopsis)
             eachArticleConatainer.appendChild(objectUrl)
-            fragment.appendChild(eachArticleConatainer)
-            articleBody.appendChild(fragment)
+            articleBody.appendChild(eachArticleConatainer)
             if(obj.userId === Number(userID)) {
                 eachArticleConatainer.classList.add("myArticles")
                 const articleEdit = HTMLFactory.createElementWithText("button", "Edit Article", `articleEdit--${obj.id}`)
@@ -36,7 +35,7 @@ const articleSection = {
             }
         })
                 let articleDom = document.getElementById("articles-section")
-                articleDom.appendChild(fragment)
+                articleDom.appendChild(articleBody)
     },
     buildArticle: function () {
         // creating html template
