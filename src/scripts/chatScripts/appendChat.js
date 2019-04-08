@@ -4,9 +4,6 @@
 // that has all the previous messages
 import buildChat from "./chatForm"
 import chatHandle from "./handleMessages"
-import api from "./chatApiManager"
-import friends from "./friends"
-
 
 //factory function to create a new friendship and new/updated msg
 const createNewFriend = (userId, friendId) => {
@@ -32,50 +29,10 @@ const messenger = {
             const chatBlock = buildChat.buildChatElements("div", "msg-block", `msg-block--${msgObj.id}`, undefined);
             const message = buildChat.buildChatElements("p", "card-text",`msg-number--${msgObj.id}`, `${msgObj.message}`);
             const user = buildChat.buildChatElements("p" ,undefined, `user-msgId--${msgObj.user.id}`,`${msgObj.user.userName}`)
-            user.addEventListener("click", () => {
-                // this will check to see if the current user(userId) is the same as the msg's user
-                let userId = Number(sessionStorage.getItem("userID"));
-                if(msgObj.user.id !== userId){
-                    console.log("not me, another user")
-                    // and if they ids don't match, it means it's a different user
-                    // also this will check verification to see if they are already friends with them
-                    let friendsArray = friends.returnFriendsArray()
-                    console.log("The friends array:",friendsArray)
-                
-                    friendsArray.forEach(friend => {
-                        //go thru the loop of found friends of current user and if
-                        // if no match,alert user to add friend
-                        console.log(friend)
-                        if(msgObj.user.id === friend){
-                            alert("this is your friend")
-                            console.log("a friend of yours")
-                            // let returnValue = confirm("Are you sure you want to add as a friend?")
-                            // if(returnValue){
-                            //     // if true add the user as a friend
-                            //     console.log("confirm works")
-                            //     let newFriend = createNewFriend(userId, msgObj.user.id)
-                            //     api.postCreateFriendship(newFriend);
-                            // }else{
-                            //     alert("this is your friend")
-                            // }
-                        }else if(msgObj.user.id !== friend){
-                            let returnValue = confirm("Are you sure you want to add as a friend?")
-                            if(returnValue){
-                                // if true add the user as a friend
-                                console.log("confirm works")
-                                let newFriend = createNewFriend(userId, msgObj.user.id)
-                                api.postCreateFriendship(newFriend);
-                            }
-                        }
-                    })
-                }
-            });
-            // const addFriendButton = buildChat.buildChatElements("button", "btn btn-primary", `add-friend--${msgObj.user.id}`, "Add Friend");
-            // addFriendButton.addEventListener("click", chatHandle.handlerChatAddFriend)
+            user.addEventListener("click", chatHandle.handleAddFriend);
             chatBlock.appendChild(message);
             chatBlock.appendChild(user);
             chat.appendChild(chatBlock);
-
         })
         buildChat.buildChatBootStrapContainer(chat);
     },
@@ -92,14 +49,13 @@ const messenger = {
                 currentUserMsgs.push(msg)
             }
         });
-        console.log(currentUserMsgs.length)
         // go thru each element in array and find the most reacent
         let lastestMsg = currentUserMsgs[currentUserMsgs.length-1]
-        console.log(lastestMsg,lastestMsg.id)
+
         //using the msgId, I can target that specific msg
         let lastMsgDiv = document.querySelector(`#msg-block--${lastestMsg.id}`)
-        // console.log(lastMsgDiv)
         const buttonGroup = document.createElement("div"); //bootstrap
+
         buttonGroup.classList = "btn-group"
         buttonGroup.setAttribute("role", "group")
         buttonGroup.setAttribute("aria-label", "Edit/Delete")
@@ -113,7 +69,6 @@ const messenger = {
         buttonGroup.appendChild(editButton);
         buttonGroup.appendChild(deleteButton);
         lastMsgDiv.appendChild(buttonGroup);
-
     }
 }
 
