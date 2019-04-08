@@ -61,6 +61,8 @@ const loginForm = {
     }
 }
 
+// let data = sessionStorage.getItem("JonS")
+// console.log(data)
 
 export default loginForm
 /* <div>

@@ -39,7 +39,7 @@ const buildFriendsSection = {
     },
     // Function to create div container with input to save new friend
     createSaveFriendDiv() {
-        const saveFriendDiv = HTMLFactory.createElementWithText("div");
+        const saveFriendDiv = HTMLFactory.createElementWithText("div", undefined, "save-friend-div");
         saveFriendDiv.classList = "card";
         const saveFriendFooterDiv = HTMLFactory.createElementWithText("div");
         saveFriendFooterDiv.classList = "card-footer";
