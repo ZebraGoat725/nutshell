@@ -16,7 +16,10 @@
     margin-bottom: 3px;
     color: white;
 }
-
+.friendArticles {
+    font-style: italic;
+    background-color: cornsilk
+}
 .friendEvent {
     background-color: cornsilk;
 }
