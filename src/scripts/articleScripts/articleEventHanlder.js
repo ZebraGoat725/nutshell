@@ -9,7 +9,10 @@ const articleHandler = {
         const synopsis = document.getElementById("articleSynopsisInput").value;
         const url = document.getElementById("articleUrlInput").value
         let activeUser = Number(sessionStorage.getItem("userID"))
-        apiCall.postArticle(articleSection.createNewArticle(title, synopsis, url, activeUser));
+        const divContainer = document.querySelector("#articles-section")
+        HTMLFactory.clearContainer(divContainer)
+        apiCall.postArticle(articleSection.createNewArticleObj(title, synopsis, url, activeUser))
+        .then(() => articleSection.buildArticleWithObj())
     },
     handeDelete: () => {
         console.log("clicked")
@@ -22,7 +25,7 @@ const articleHandler = {
         console.log("clicked edit")
         let articleId = event.target.id
         const hi = articleId.split("--")[1];
-        const divContainer = document.querySelector("#articleBody")
+        const divContainer = document.querySelector("#articles-section")
         HTMLFactory.clearContainer(divContainer)
         apiCall.getArticle(hi).then(entry => {
             console.log(entry)

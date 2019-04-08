@@ -1,6 +1,7 @@
 import friendEventHandler from "./../friendScripts/friendEventHandler"
 import eventsData from "../eventScripts/eventsDataManager"
 import eventHTML from "../eventScripts/eventHTML";
+import articleSection from "../articleScripts/article"
 
 
 
@@ -16,7 +17,7 @@ const loadPage = {
             return eventsData.getFriendEvents(userID)
         }).then(response => response.forEach(user => {
             return eventsData.getEvents(user).then(response => eventHTML.listEventsToDom(response))
-        }))
+        })).then(articleSection.listArticles())
     }
 }
 
