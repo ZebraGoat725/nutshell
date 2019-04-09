@@ -1,3 +1,6 @@
+// Author: Billy Mathison
+// Page contains an object with two different functions, one to hide visibility of all sections and one to show all sections
+
 const friendsContainer = document.querySelector("#friends-section");
 const articlesContainer = document.querySelector("#articles-section");
 const eventsContainer = document.querySelector("#events-section");

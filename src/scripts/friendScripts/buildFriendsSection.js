@@ -1,3 +1,6 @@
+// Author: Billy Mathison
+// Page contains an object with four different functions to build friends section and friend object
+
 import HTMLFactory from "./../HTMLFactory"
 import friendEventHandler from "./friendEventHandler"
 

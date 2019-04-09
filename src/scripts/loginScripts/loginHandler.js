@@ -1,3 +1,6 @@
+// Authors: Billy Mathison
+// Page contains an object with three functions to handle login page functions
+
 import HTMLFactory from "./../HTMLFactory"
 import registerForm from "./registerForm"
 import API from "./../apiManager.js"

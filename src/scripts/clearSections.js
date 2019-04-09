@@ -1,3 +1,6 @@
+// Author: Billy Mathison
+// Page contains an object with functions to clear each section and a function to clear all sections
+
 import HTMLFactory from "./HTMLFactory"
 
 const loginContainer = document.querySelector("#login-section");

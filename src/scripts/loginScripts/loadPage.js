@@ -1,3 +1,6 @@
+// Authors: Billy Mathison
+// Page contains an object with one function to clear all sections and then build all sections
+
 import friendEventHandler from "./../friendScripts/friendEventHandler"
 import task from "../taskScripts/task"
 import eventsData from "../eventScripts/eventsDataManager"
