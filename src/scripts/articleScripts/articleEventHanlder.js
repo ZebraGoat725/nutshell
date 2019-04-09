@@ -1,3 +1,8 @@
+// This module contains all the event hanlders to edit delete and create 
+// Author:
+// Jonathan
+
+
 import articleSection from "../articleScripts/article"
 import apiCall from "../articleScripts/articleApi"
 import HTMLFactory from "../HTMLFactory";
