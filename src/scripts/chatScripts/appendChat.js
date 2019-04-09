@@ -2,6 +2,7 @@
 // buildChatBootStrapContainer so that the passed in array will be parsed and passed in to that function
 // the information that is passed into the function will be the main message chunk
 // that has all the previous messages
+// Author: Jameka Echols
 import buildChat from "./chatForm"
 import chatHandle from "./handleMessages"
 

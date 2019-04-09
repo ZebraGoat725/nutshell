@@ -1,5 +1,6 @@
 //this is the chat's api manager componenet. It will include all the fetch calls that are directly connected to the
 // the chat message
+// Author: Jameka Echols
 
 const url = "http://localhost:8088";
 
