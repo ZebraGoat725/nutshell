@@ -30,6 +30,16 @@ const messenger = {
             const message = buildChat.buildChatElements("p", "card-text msg--text",`msg-number--${msgObj.id}`, `${msgObj.message}`);
             const user = buildChat.buildChatElements("p" ,"user--name", `user-msgId--${msgObj.user.id}`,`${msgObj.user.userName}`)
             user.addEventListener("click", chatHandle.handleAddFriend);
+
+            // add an eventlistener on the user to change the color as you hover
+            user.addEventListener("mouseover", () => {
+                event.target.style.color = "aqua";
+            })
+            user.addEventListener("mouseleave", () => {
+                event.target.style.color = "black";
+            })
+
+            // append the elements
             chatBlock.appendChild(message);
             chatBlock.appendChild(user);
             chat.appendChild(chatBlock);
@@ -65,9 +75,12 @@ const messenger = {
         editButton.addEventListener("click",chatHandle.handlerEditChatButton);
         const deleteButton = buildChat.buildChatElements("button","btn btn-danger",`delete-userMsg--${lastestMsg.id}`,"Delete")
         deleteButton.addEventListener("click", chatHandle.handlerDeleteChatButton);
+        const keepButton = buildChat.buildChatElements("button","btn btn-primary",`keep-userMsg--${lastestMsg.id}`,"Keep")
+        keepButton.addEventListener("click", chatHandle.handleKeepChatButton);
 
         buttonGroup.appendChild(editButton);
         buttonGroup.appendChild(deleteButton);
+        buttonGroup.appendChild(keepButton);
         lastMsgDiv.appendChild(buttonGroup);
     }
 }
