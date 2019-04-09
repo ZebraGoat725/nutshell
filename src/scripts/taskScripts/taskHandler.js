@@ -1,3 +1,5 @@
+//Author Alex Thacker
+
 //functions to run when create new task button is clicked. also when save button click, function will clear dom and popluate all task, including new one. new task handler, refresh handler, save new task handler, edit existing task
 import taskForm from "./taskForm"
 //newTaskForm
@@ -114,15 +116,3 @@ export default {
         })
     }
 }
-
-// clearContainer(elementToClear) {
-//     while (elementToClear.firstChild) {
-//         elementToClear.removeChild(elementToClear.firstChild);
-//     }
-// }
-
-// "id": 7,
-// "userId": 1,
-// "taskName": "kill the lawn",
-// "targetDate": "4/1/2019",
-// "isComplete": true
