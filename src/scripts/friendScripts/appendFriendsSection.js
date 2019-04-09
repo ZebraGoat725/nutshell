@@ -1,3 +1,6 @@
+// Author: Billy Mathison
+// Page contains an object with function to append user and friend information to the DOM
+
 import buildFriendsSection from "./buildFriendsSection"
 import API from "./../apiManager"
 import apiFriends from "./apiManagerFriends"

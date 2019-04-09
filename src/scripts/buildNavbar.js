@@ -1,3 +1,6 @@
+// Author: Billy Mathison
+// Page contains an object with one function to build the navBar
+
 import HTMLFactory from "./HTMLFactory"
 import loginForm from "./loginScripts/loginForm"
 import clearSection from "./clearSections"

@@ -1,3 +1,6 @@
+// Author: Billy Mathison
+// Page contains an object with four different functions to handle all events on the friends section
+
 import appendFriendsSection from "./appendFriendsSection"
 import HTMLFactory from "./../HTMLFactory"
 import apiFriends from "./apiManagerFriends"

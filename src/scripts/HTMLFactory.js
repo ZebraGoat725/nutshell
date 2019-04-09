@@ -1,3 +1,6 @@
+// Author: Billy Mathison
+// Page contains an object with three different functions to build Html, clear a container, and create list element
+
 const HTMLFactory = {
     // Function to build and return an element taking in element, text, and id as arguments.
     createElementWithText(element, text, id) {

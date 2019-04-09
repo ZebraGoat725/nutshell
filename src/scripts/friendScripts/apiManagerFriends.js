@@ -1,3 +1,6 @@
+// Author: Billy Mathison
+// Page contains an object with three different fetch calls to GET, POST, and DELETE from friends resource
+
 //Main URL
 const url = "http://localhost:8088";
 
