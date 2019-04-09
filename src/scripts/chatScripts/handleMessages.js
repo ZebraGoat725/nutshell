@@ -1,4 +1,5 @@
 // this component will create the handlders that will be used for the messages
+// Author: Jameka Echols
 import chatApi from "./chatApiManager";
 import HTMLfactory from "../HTMLFactory"
 import chatMsg from "./appendChat"

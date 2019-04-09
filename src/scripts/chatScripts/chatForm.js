@@ -1,4 +1,5 @@
 // This component will essentially build the chat form fields
+// Author: Jameka Echols
 import chatHandle from "./handleMessages"
 
 
