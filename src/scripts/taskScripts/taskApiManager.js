@@ -1,3 +1,5 @@
+//Author Alex Thacker
+
 const url = "http://localhost:8088";
 
 export default {

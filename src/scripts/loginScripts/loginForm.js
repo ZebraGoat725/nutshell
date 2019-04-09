@@ -1,3 +1,5 @@
+//Author Alex Thacker
+
 import HTMLFactory from "../HTMLFactory"
 import loginHandler from "./loginHandler"
 
@@ -65,15 +67,3 @@ const loginForm = {
 // console.log(data)
 
 export default loginForm
-/* <div>
-    <form>
-        <div>
-            <label></label>
-            <input></input>
-        </div>
-        <div>
-            <label></label>
-            <input></input>
-        </div>
-    </form>
-</div> */

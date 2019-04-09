@@ -1,3 +1,5 @@
+//Author Alex Thacker
+
 //function to create elements and do get call to populate elements
 import taskApiManager from "./taskApiManager"
 //getTask
@@ -98,27 +100,4 @@ export default {
         return taskFragment
 
     }
-}
-
-// task, target Date, checkbox, header, create new button, refresh button
-
-// "id": 1,
-// "userId": 2,
-// "taskName": "Take out trash",
-// "targetDate": "4/5/2019",
-// "isComplete": false
-
-{
-    /* <div>
-        <h1>tasks</h1>
-        <div>
-            <p>first task</p>
-            <p>date</p>
-            <p>checkbox</p>
-            <div>
-                <button>refresh</button>
-                <button>create new</button>
-            </div>
-        </div>
-    </div> */
 }
