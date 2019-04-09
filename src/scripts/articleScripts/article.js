@@ -85,7 +85,7 @@ const articleSection = {
         const articleUrlLabel = HTMLFactory.createElementWithText("label", "URL: ", "articleUrlLabel");
         const articleUrlInput = HTMLFactory.createElementWithText("input", undefined, "articleUrlInput");
         const submitButton = HTMLFactory.createElementWithText("button", "Submit New Article", "submitArticle");
-        submitButton.classList.add("btn-success")
+        submitButton.classList.add("btn-info")
         submitButton.addEventListener("click", articleHandler.createNewArticle);
         newArticleFragment.appendChild(articleTitleLabel);
         newArticleFragment.appendChild(articleTitleInput);
@@ -125,6 +125,7 @@ const articleSection = {
         editFormFragment.appendChild(urlInput)
 
         const updateArticleButton = HTMLFactory.createElementWithText("button", "Update", "updateArticleButton")
+        updateArticleButton.classList.add("btn-info")
         updateArticleButton.addEventListener("click", () => {
             articleHandler.handleUpdate(event)
         })
