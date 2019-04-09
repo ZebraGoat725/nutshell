@@ -1,3 +1,12 @@
+// This module conatins the functions to build the template for the dom
+// this gets imported into articleEventHandler
+// and also takes the fetch call form articleApi and dispalys the articles of the user and friend
+// listArticles calls both functions and combines them boyh and calls them
+// author :
+// Jonathan
+
+
+
 import HTMLFactory from "./../HTMLFactory"
 import loginHandler from "../loginScripts/loginHandler"
 import apiCall from "../articleScripts/articleApi"

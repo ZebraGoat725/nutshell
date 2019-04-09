@@ -1,4 +1,7 @@
-
+// This module conatins all fetch calls and imports into loadPage
+// article.js and articleEventHandler.js
+// Author:
+// Jonathan
 const url = "http://localhost:8088"
 
 const apiCall = {
