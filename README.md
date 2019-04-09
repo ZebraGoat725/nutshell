@@ -18,7 +18,7 @@ After that, open up your editor. You're going to need to do the following:
 + 1. go into the `api/database.json.example` file  
 + 2. Cmd + A (on Mac) or Ctrl + A (on Windows) to copy all of the example database
 + 3. While in the `api` directory, make a new file and call it `database.json`
-+ 4. Cmd + V (on Mac) or Ctrl + V (on Windows) to paste database.json.example into database.json
++ 4. Cmd + V (on Mac) or Ctrl + V (on Windows) to paste `database.json.example` into `database.json`
 
 Now, since you have an actual database.json, go back to your terminal, enter the command
 
@@ -39,7 +39,8 @@ grunt
 ```
 
 Your terminal should look similar to this, with no read errors: 
-![grunt example](./exampleRun.png)
+![grunt example][picture]
+[picture]: ./gruntExample.png
 
 The next thing to do is head over to your browser. Enter in the following url and press enter 
 ```
