@@ -3,6 +3,8 @@ import eventsData from "./eventsDataManager";
 import eventHTML from "./eventHTML"
 import handlersForEvents from "./handlersForEvents";
 
+// Author: Chris Morgan
+
 // The createEventForm is meant to create the form that the user will need to create a new event.
 
 

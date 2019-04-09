@@ -27,27 +27,30 @@ const checkUserName = (userArray, searchBy) => {
 const loginHandler = {
     // Function to handle user clicking login button. Function clears page and loads dashboard
     login() {
+        const section = document.querySelector("#login-section");
         const userName = document.getElementById("userNameInput").value.toLowerCase();
         const userEmail = document.getElementById("emailInput").value.toLowerCase();
-        // Checking to make sure user has entered a name and email
-        if (userName === "" || userEmail === "") {
-            alert("Please enter both username and email")
-        }
-        else {
+        let isMatch = false;
+        if(userName === "" || userEmail === ""){
+            alert("You left an input field blank");
+        } else{
             API.getUsers().then(users => {
-                users.forEach(user => {
-                    if (userName === user.userName.toLowerCase() && userEmail === user.email.toLowerCase()) {
-                        sessionStorage.setItem("userID", user.id);
-                        sessionStorage.setItem("userName", user.userName);
-                    }
-                })
-            }).then(() => {
-                const section = document.querySelector("#login-section");
-                HTMLFactory.clearContainer(section)
-            }).then(() => {
-                // Calling function to build all sections of DOM
-                loadPage.load()
+            users.forEach(user => {
+                if (userName === user.userName.toLowerCase() && userEmail === user.email.toLowerCase()) {
+                    sessionStorage.setItem("userID", user.id);
+                    sessionStorage.setItem("userName", user.userName);
+                    HTMLFactory.clearContainer(section);
+                    loadPage.load()
+                    return isMatch = false;
+                } else if(userName === user.userName.toLowerCase() || userEmail === user.email.toLowerCase()) {
+                    return isMatch = true;
+                }
             })
+        }).then(() => {
+            if(isMatch === true){
+                return alert("Username or Email is invalid")
+            }
+        })
         }
     },
     // Function to handle user clicking register button. Function clears page, calls registerForm and appends to registerSection and then appends to body

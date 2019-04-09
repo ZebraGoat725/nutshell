@@ -23,3 +23,32 @@
 .friendEvent {
     background-color: cornsilk;
 }
+
+#main-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: auto;
+}
+
+#friends-section{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+#tasks-and-events{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-top: 25px;
+}
+
+#messages-and-articles{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-top: 25px;
+    max-width: 40%;
+}

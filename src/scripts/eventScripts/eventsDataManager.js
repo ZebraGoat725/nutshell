@@ -1,5 +1,7 @@
 const url = "http://localhost:8088";
 
+// Author: Chris Morgan
+
 const eventsData = {
     getEvents: (userId) => {
         return fetch(`${url}/events?userId=${userId}`).then(response => response.json());
