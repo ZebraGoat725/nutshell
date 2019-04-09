@@ -4,6 +4,8 @@ import editEventForm from "./editEventForm";
 import eventsData from "./eventsDataManager";
 import eventHTML from "./eventHTML";
 
+// Author: Chris Morgan
+
 // Target the container for the events
 const eventSection = document.querySelector("#events-section");
 

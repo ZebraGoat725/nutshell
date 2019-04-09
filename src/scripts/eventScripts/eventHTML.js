@@ -2,6 +2,8 @@ import HTMLFactory from "../HTMLFactory"
 import handlersForEvents from "./handlersForEvents"
 import editEventForm from "./editEventForm"
 
+//Author: Chris Morgan
+
 const eventHTML = {
     // buildEventCard builds the outer structure of the card.
     buildEventCard: () => {
@@ -28,6 +30,7 @@ const eventHTML = {
         const eventDate = eachEventContainer.appendChild(HTMLFactory.createElementWithText("p", eventObj.eventDate, `eventCard-date--${eventObj.id}`));
         eventDate.classList.add("card-text");
         const eventLocation = eachEventContainer.appendChild(HTMLFactory.createElementWithText("p", eventObj.eventLocation, `eventCard-location--${eventObj.id}`));
+        eventLocation.classList.add("mb-4")
         eventLocation.classList.add("card-text");
         if(eventObj.userId === Number(userID)){
             eachEventContainer.classList.add("myEvent");
