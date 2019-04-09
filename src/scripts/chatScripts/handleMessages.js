@@ -131,6 +131,13 @@ const chatHandlers = {
                 }
             })
         }
+    },
+    handleKeepChatButton: () => {
+        const msgContainer = document.querySelector("#messages-section");
+        HTMLfactory.clearContainer(msgContainer)
+        chatApi.getMessages().then(msgArray => {
+            chatMsg.buildMainMsg(msgArray);
+        })
     }
 }
 export default chatHandlers
