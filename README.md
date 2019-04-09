@@ -39,8 +39,8 @@ grunt
 ```
 
 Your terminal should look similar to this, with no read errors: 
-![grunt example][picture]
-[picture]: ./gruntExample.png
+![grunt example](./gruntExample.png)
+
 
 The next thing to do is head over to your browser. Enter in the following url and press enter 
 ```
