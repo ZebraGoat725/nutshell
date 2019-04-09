@@ -1,80 +1,89 @@
-# Nutshell: The Information Dashboard
+# NutShell
 
-Nutshell is a new product offering that you have been tasked with building. It's a dashboard for people to use to organize their daily tasks, events, news article, friends, and chat messages.
+Welcome to Nutshell. It is a social platform that allows users to set tasks for themselves, create, update and delete news articles and events and also see that of your friends. Not only can you add more friends, but delete them when those ties fall sour. Users are also able to communicate with one another through the ChatRoom we created. Users are able to create, read, update and delete their most current message. We hope you enjoy our application!
 
-You will be utilizing all of the skills and concepts that you've learned up to this point in the course.
+## Getting Started
 
-1. Functions
-1. Databases/API
-1. Github
-1. Objects
-1. CSS
-1. Handling user events
-1. Factory functions
-1. Data entry/editing
-1. Modular code with Browserify
-1. Relational data
+These instructions will get you a copy of the project up and running on your local machine
 
-To start you off, here's an example of what the resources in your API should look like once it's populated with some data from your application.
+### Installing
 
-### Users
+First, you'll need to clone down the repo into a directory. Open your terminal and enter
 
-```json
-{ "id": 1, "username": "Steve", "email": "me@me.com" }
+```
+git clone git@github.com:nss-c31-mixed-havoc/nutshell.git
 ```
 
-### Messages
+After that, open up your editor. You're going to need to do the following:
++ 1. go into the `api/database.json.example` file  
++ 2. Cmd + A (on Mac) or Ctrl + A (on Windows) to copy all of the example database
++ 3. While in the `api` directory, make a new file and call it `database.json`
++ 4. Cmd + V (on Mac) or Ctrl + V (on Windows) to paste `database.json.example` into `database.json`
 
-```json
-{ "id": 1, "userId": 1, "message": "What's up?" }
+Now, since you have an actual database.json, go back to your terminal, enter the command
+
+```
+cd src/lib
 ```
 
-### News
+You will need to install node modules, run the command
 
-```json
-{
-    "id": 1,
-    "userId": 2,
-    "url": "https://www.quantamagazine.org/newfound-wormhole-allows-information-to-escape-black-holes-20171023/",
-    "title": "Wormholes Allow Information to Escape Black Holes",
-    "synopsis": "Check out this recent discovery about workholes"
-}
+```
+npm install
 ```
 
-### Friends
+Now, you are ready to run the application. In the terminal, run the following command
 
-```json
-{ "connectionId": 1, "userId": 1, "otherFriendId": 3 }
+```
+grunt
 ```
 
-### Tasks
+Your terminal should look similar to this, with no read errors: 
+![grunt example](./gruntExample.png)
 
-```json
-{ "id": 1, "userId": 3, "task": "Take out garbage" }
+
+The next thing to do is head over to your browser. Enter in the following url and press enter 
+```
+http://localhost:8080
 ```
 
-## Professional Requirements
+###### You are now ready to use NutShell. 
 
-1. All teammates must be using Grunt to run ESLint and Browserify during development
-1. Each module should have a comment at the top with the following info: author(s) and purpose of module
-1. The README for your project should include instructions on how another person can download and run the application
 
-## How to Handle Authentication
+## First Time User instructions
+* The first thing you have to do is register as new user otherwise you will not be able to use NutShell
+* Once registered, you are now able to use the application
+* Since there are only a few people in the database, you need more friends.
++ Clicking on the Add Friend in the friends section, you can add these 5 users (the are current users: AlexT, JamekaE, JonS, BillyM, ChrisM)
+* Another way is to go to the chat room and click on a user beside their message and add them. 
+* You now have friends. 
+* At this point, you can explore your dashboard, enter a new task, article, events. You are able to see your friends events and articles as well. 
+* While you're at it, if you want to go to the chat room with out any noise, go the navigation bar and click on the messages tab. You'll see just that, the chat room. 
 
-You will be using session storage to keep track of which user has logged into Nutshell. When the user fills out the registration form, you will POST their username and password to the `users` collection in your API. You will then immediately take the `id` of the object in the response and save it to session storage.
 
-```js
-sessionStorage.setItem("activeUser", user.id)
-```
+### We hope you enjoyed our app! :)
 
-If you want to add a Logout feature, all you need to do it remove the session storage item.
 
-```js
-sessionStorage.removeItem("activeUser")
-```
+## Built With
 
-## Visual Feature List
+* [VanillaJS](http://es6-features.org/#Constants) - The language we used
+* [browserify](http://browserify.org/) - Module Bundler
+* [grunt](https://gruntjs.com/) - JavaScript Task Runner
+* [Bootstrap4.3](https://getbootstrap.com/) - Used for styling
 
-To help you along, here is a visualization of the features, and behaviors of the application to get you started.
 
-![nutshell features](./Nutshell.png)
+
+## Authors
+
+* **Alex Thacker** 
+* **Jameka Echols** 
+* **Billy Mathison** 
+* **Chris Morgan** 
+* **Jonathon Schaffer** 
+
+
+
+## Acknowledgments
+
+* Inspiration
+* [PurpleBooth](https://gist.githubusercontent.com/PurpleBooth/109311bb0361f32d87a2/raw/8254b53ab8dcb18afc64287aaddd9e5b6059f880/README-Template.md) - For their template
