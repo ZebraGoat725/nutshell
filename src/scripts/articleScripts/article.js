@@ -24,8 +24,10 @@ const articleSection = {
             if(obj.userId === Number(userID)) {
                 eachArticleConatainer.classList.add("myArticles")
                 const articleEdit = HTMLFactory.createElementWithText("button", "Edit Article", `articleEdit--${obj.id}`)
+                articleEdit.classList.add("btn-info")
                 articleEdit.addEventListener("click", articleHandler.handleEdit)
                 const articleDelete = HTMLFactory.createElementWithText("button", "Delete Article", `articleDelete--${obj.id}`)
+                articleDelete.classList.add("btn-danger")
                 articleDelete.addEventListener("click", articleHandler.handeDelete)
                 fragment.appendChild(articleEdit)
                 fragment.appendChild(articleDelete)
@@ -41,14 +43,22 @@ const articleSection = {
         // creating html template
         const articleFragment = document.createDocumentFragment();
         const articleCard = HTMLFactory.createElementWithText("div", undefined, "articleCard");
+        articleCard.classList.add("card")
         const articleTitle = HTMLFactory.createElementWithText("h1", "Articles", "articleTitle");
+        articleTitle.classList.add("card-header")
         const articleBody = HTMLFactory.createElementWithText("div", undefined, "articleBody");
+        articleBody.classList.add("card-body")
+        articleBody.classList.add("bg-light")
+        articleBody.classList.add("text-dark")
         const createArticleButton = HTMLFactory.createElementWithText("button", "Create New Article", "newArticle");
         articleCard.appendChild(articleTitle);
         articleCard.appendChild(articleBody)
         articleCard.appendChild(createArticleButton)
 
         createArticleButton.setAttribute("type", "button")
+        createArticleButton.classList.add("btn");
+        createArticleButton.classList.add("btn-sm");
+        createArticleButton.classList.add("btn-primary");
         createArticleButton.addEventListener("click", function () {
             HTMLFactory.clearContainer(articleCard)
             articleCard.appendChild(articleSection.newArticleForm())
@@ -75,6 +85,7 @@ const articleSection = {
         const articleUrlLabel = HTMLFactory.createElementWithText("label", "URL: ", "articleUrlLabel");
         const articleUrlInput = HTMLFactory.createElementWithText("input", undefined, "articleUrlInput");
         const submitButton = HTMLFactory.createElementWithText("button", "Submit New Article", "submitArticle");
+        submitButton.classList.add("btn-success")
         submitButton.addEventListener("click", articleHandler.createNewArticle);
         newArticleFragment.appendChild(articleTitleLabel);
         newArticleFragment.appendChild(articleTitleInput);
